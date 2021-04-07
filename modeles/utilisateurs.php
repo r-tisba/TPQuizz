@@ -51,3 +51,9 @@ function supprimerUtilisateur($idUtilisateur)
     $requete->execute([$idUtilisateur]);
     return true;
 }
+function recupererInfosConnexion($pseudo)
+{
+    $requete = getBDD()->prepare("SELECT idUtilisateur, pseudo, mdp, idRole FROM utilisateurs WHERE pseudo = ?");
+    $requete->execute([$pseudo]);
+    return $requete;
+}

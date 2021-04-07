@@ -9,3 +9,4 @@ if (!empty($_SESSION["idRole"]) && $_SESSION["idRole"] == 2)
 {
     header("location:visiteur/index.php");
 }
+
