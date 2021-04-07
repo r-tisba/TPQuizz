@@ -18,7 +18,7 @@ require_once "../modeles/modele.php";
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
   <a class="navbar-brand" href="index.php">
     <img src="../images/design/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    Mon entreprise
+    Quiz'ine
   </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

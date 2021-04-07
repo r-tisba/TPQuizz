@@ -7,6 +7,13 @@ function recupererUtilisateurs()
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function recupererUtilisateurViaPseudo($pseudo)
+{
+    $requete = getBDD()->prepare("SELECT idUtilisateur FROM utilisateurs WHERE pseudo = ?");
+    $requete->execute([$pseudo]);
+    return $requete->fetch(PDO::FETCH_ASSOC);
+}
+
 function recupererUtilisateur($idUtilisateur)
 {
     $requete = getBDD()->prepare("SELECT * FROM utilisateurs WHERE idUtilisateur = ?");
@@ -25,7 +32,7 @@ function recupererEmail($email)
 {
     $requete = getBDD()->prepare("SELECT email FROM utilisateurs WHERE email = ?");
     $requete->execute([$email]);
-    return $requete->fetch(PDO::FETCH_ASSOC);
+    return $requete;
 }
 
 function creerUtilisateur($email, $pseudo, $mdp)

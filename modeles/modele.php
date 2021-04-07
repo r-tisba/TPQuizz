@@ -6,3 +6,4 @@ function getBDD()
 }
 
 require_once "../modeles/utilisateurs.php";
+require_once "../modeles/questionsSecretes.php";

@@ -65,7 +65,6 @@ require_once "../visiteur/entete.php";
             <label for="verifMdp">Vérifier votre mot de passe :</label>
             <input type="password" class="form-control" name="verifMdp" id="verifMdp" placeholder="Vérifier votre mot de passe" required/>
         </div>
-        
         <div class="form-group">
             <label for="idQuestion">Question secrète :</label>
             <select name="idQuestion" id="idQuestion" class="form-control">
@@ -80,7 +79,7 @@ require_once "../visiteur/entete.php";
                     <?php
                 }
             ?>
-            </select>
+            </select>  
         </div>
         <div class="form-group">
             <label for="reponseQuestionSecrete">Réponse à la question secrète :</label>

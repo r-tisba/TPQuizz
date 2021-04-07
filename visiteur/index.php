@@ -8,6 +8,7 @@ if (!empty($_SESSION["idRole"]) && $_SESSION["idRole"] == 1)
 {
     header("location:../membre/index.php");
 } 
+
 if (!empty($_SESSION["idRole"]) && $_SESSION["idRole"] == 3){
     ?>
     <p>Vous avez été banni</p>
