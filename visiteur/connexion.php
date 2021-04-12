@@ -24,7 +24,7 @@ require_once "entete.php";
                 case "falsemdp": ?>
                 <?php echo "Le mot de passe n'existe pas"; ?>
                 <?php break;?>
-            <?php case "pseudo": ?>
+            <?php case "falsepseudo": ?>
                 <?php echo "Le pseudo n'existe pas"; ?>
                 <?php break;?>
             <?php case "mdplength": ?>
@@ -43,7 +43,7 @@ require_once "entete.php";
 
     <form method="post" action="../traitements/sauvegarderConnexion.php">
             <div class="form-group">
-                <label for="pseudo">pseudo :</label>
+                <label for="pseudo">Pseudo :</label>
                 <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Saisissez votre pseudo" value="<?=(isset($_POST["pseudo"]) ? $_POST["pseudo"] : "")?>" required/>
             </div>
             <div class="form-group">

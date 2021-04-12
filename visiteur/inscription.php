@@ -11,7 +11,7 @@ require_once "../visiteur/entete.php";
         <div class="alert alert-success mt-2">Vous avez bien été inscrit <br>
         Vous allez être redirigé vers l'accueil</div>
     <?php
-    header("refresh:4;../admin/index.php");
+    header("refresh:4;../visiteur/index.php");
     }
     ?>
     <?php if (!empty($_GET["error"])) 
@@ -87,7 +87,7 @@ require_once "../visiteur/entete.php";
         </div>
         
         <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary" name="envoi" id="envoi" value="1">S'inscrire !</button>
+            <button type="submit" class="btn btn-outline-primary" name="envoi" id="envoi" value="1">S'inscrire !</button>
         </div>
     </form>
 </div>

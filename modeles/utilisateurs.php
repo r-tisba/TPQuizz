@@ -24,29 +24,6 @@ class Utilisateur{
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function recupererInfosConnexion($pseudo)
 {
     $requete = getBDD()->prepare("SELECT idUtilisateur, pseudo, mdp, idRole FROM utilisateurs WHERE pseudo = ?");
