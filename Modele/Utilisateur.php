@@ -6,12 +6,9 @@ class Utilisateur
     private $email;
     private $mdp;
 
-    public function __construct($idUtilisateur, $pseudo, $email, $mdp)
+    public function __construct($pseudo)
     {
         $this->pseudo=$pseudo;
-        $this->pseudo=$pseudo;
-        $this->email=$email;
-        $this->mdp=$mdp;
     }
 
     public function getPseudo()

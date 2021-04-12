@@ -51,22 +51,22 @@ require_once "../modeles/modele.php";
       </ul> 
         <?php
 
-        if (isset($_SESSION["identifiant"]) && !empty($_SESSION))
+        if (isset($_SESSION["pseudo"]) && !empty($_SESSION))
         {
           ?>
           
           <div class="div-inline my-2 my-lg-0">
             <a class="nav-item active nav-link" style="color: #00FF00;">
-              <?= "Vous êtes connecté " . $_SESSION["identifiant"]?>
+              <?= "Vous êtes connecté " . $_SESSION["pseudo"]?>
             </a>
           </div>
-          <a class="btn btn-outline-danger ml-1" href="../admin/deconnexion.php">Se déconnecter</a>
+          <a class="btn btn-outline-danger ml-1" href="../membre/deconnexion.php">Se déconnecter</a>
           
           <?php
         } else {
           ?>
-          <a class="btn btn-outline-success ml-auto" href="inscription.php">S'inscrire</a>
-          <a class="btn btn-outline-primary ml-1" href="connexion.php">Se connecter</a> 
+          <a class="btn btn-outline-success ml-auto" href="../visiteur/inscription.php">S'inscrire</a>
+          <a class="btn btn-outline-primary ml-1" href="../visiteur/connexion.php">Se connecter</a> 
           <?php
         }
         ?>

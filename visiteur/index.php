@@ -18,5 +18,3 @@ if (!empty($_SESSION["idRole"]) && $_SESSION["idRole"] == 3){
 
 
 ?>
-
-<a href="connexion.php">Connexion</a>
