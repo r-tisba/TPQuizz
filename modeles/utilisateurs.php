@@ -21,13 +21,6 @@ function recupererUtilisateur($idUtilisateur)
     return $requete->fetch(PDO::FETCH_ASSOC);
 }
 
-function mailUnique($email)
-{
-    $requete = getBDD()->prepare("SELECT email FROM utilisateurs WHERE email = ?");
-    $requete->execute([$email]);
-    return $requete;
-}
-
 function recupererEmail($email)
 {
     $requete = getBDD()->prepare("SELECT email FROM utilisateurs WHERE email = ?");
@@ -58,6 +51,7 @@ function supprimerUtilisateur($idUtilisateur)
     $requete->execute([$idUtilisateur]);
     return true;
 }
+
 function recupererInfosConnexion($pseudo)
 {
     $requete = getBDD()->prepare("SELECT idUtilisateur, pseudo, mdp, idRole FROM utilisateurs WHERE pseudo = ?");

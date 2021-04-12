@@ -13,10 +13,10 @@ if(isset($_POST["envoi"]) && !empty($_POST["envoi"]) && $_POST["envoi"] == 1)
         {
             $requete = recupererInfosConnexion($pseudo);
 
-            // Vérification si l'pseudo existe pas
-            if($requete->rowCount() > 0)
+            // Vérification si le pseudo existe
+            if($requete->rowCount() != 0)
             {
-                // L'pseudo existe
+                // Le pseudo existe
                 $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 
                 // Vérifier si les mots de passe correspondent
@@ -43,7 +43,7 @@ if(isset($_POST["envoi"]) && !empty($_POST["envoi"]) && $_POST["envoi"] == 1)
                     header("location:../visiteur/connexion.php?error=falsemdp");
             }
             } else {
-                header("location:../visiteur/connexion.php?error=falseid");
+                header("location:../visiteur/connexion.php?error=falsepseudo");
             }
         } else {
             header("location:../visiteur/connexion.php?error=mdplength");
