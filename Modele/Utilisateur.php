@@ -1,14 +1,26 @@
 <?php
-class Utilisateur
+class Utilisateur extends Modele
 {
     public $idUtilisateur;
-    private $pseudo;
-    private $email;
-    private $mdp;
+    public $email;
+    public $pseudo;
+    public $mdp;
+    public $idRole;
+    public $pointsUtilisateur ;
+    public $avatar;
 
-    public function __construct($pseudo)
+    public function __construct($idU)
     {
-        $this->pseudo=$pseudo;
+        $requete = getBdd()->prepare("SELECT * FROM utilisateurs");
+        $requete->execute();
+        $utilisateur= $requete->fetch(PDO::FETCH_ASSOC);
+        $this->idUtilisateur=$idU;
+        $this->pseudo=$utilisateur["pseudo"];
+        $this->email=$utilisateur["email"];
+        $this->mdp=$utilisateur["mdp"];
+        $this->idRole=$utilisateur["idRole"];
+        $this->pointsUtilisateur=$utilisateur["pointsUtilisateur"];
+        $this->avatar=$utilisateur["avatar"];
     }
 
     public function getPseudo()
