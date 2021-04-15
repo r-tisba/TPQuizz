@@ -1,6 +1,11 @@
 <?php
 session_start();
 require_once "../modeles/modele.php";
+require_once "../Modele/Modele.php";
+require_once "../Modele/Quiz.php";
+require_once "../Modele/Categorie.php";
+require_once "../Modele/Question.php";
+require_once "../Modele/Reponse.php";
 ?>
 
 <!doctype html>
