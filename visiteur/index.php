@@ -15,8 +15,8 @@ if (!empty($_SESSION["idRole"]) && $_SESSION["idRole"] == 3){
     <p>Vous avez été banni</p>
 <?php
 }
-$quiz= new Quizz(1);
-print_r($quiz);
+// $quiz= new Quizz(1);
+// print_r($quiz);
 
 $quiz = new Quiz(1);
 

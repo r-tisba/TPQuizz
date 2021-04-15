@@ -1,26 +1,29 @@
 <?php
 class Utilisateur extends Modele
 {
-    public $idUtilisateur;
-    public $email;
-    public $pseudo;
-    public $mdp;
-    public $idRole;
-    public $pointsUtilisateur ;
-    public $avatar;
+    private $idUtilisateur;
+    private $email;
+    private $pseudo;
+    private $mdp;
+    private $idRole;
+    private $pointsUtilisateur ;
+    private $avatar;
 
-    public function __construct($idU)
+    public function __construct($idU =null)
     {
-        $requete = getBdd()->prepare("SELECT * FROM utilisateurs");
-        $requete->execute();
-        $utilisateur= $requete->fetch(PDO::FETCH_ASSOC);
-        $this->idUtilisateur=$idU;
-        $this->pseudo=$utilisateur["pseudo"];
-        $this->email=$utilisateur["email"];
-        $this->mdp=$utilisateur["mdp"];
-        $this->idRole=$utilisateur["idRole"];
-        $this->pointsUtilisateur=$utilisateur["pointsUtilisateur"];
-        $this->avatar=$utilisateur["avatar"];
+        if($idU!=null){
+            $requete = getBdd()->prepare("SELECT * FROM utilisateurs WHERE idUtilisateur=?");
+            $requete->execute([$idU]);
+            $utilisateur= $requete->fetch(PDO::FETCH_ASSOC);
+
+            $this->idUtilisateur=$idU;
+            $this->pseudo=$utilisateur["pseudo"];
+            $this->email=$utilisateur["email"];
+            $this->mdp=$utilisateur["mdp"];
+            $this->idRole=$utilisateur["idRole"];
+            $this->pointsUtilisateur=$utilisateur["pointsUtilisateur"];
+            $this->avatar=$utilisateur["avatar"];
+        }
     }
 
     public function getPseudo()
@@ -28,22 +31,31 @@ class Utilisateur extends Modele
         // $this permet de faire réference à l'objet
         return $this->pseudo;
     }
-
-    public function setPseudo($newpseudo)
+    public function getEmail()
     {
-        $this->pseudo = $newpseudo;
+        // $this permet de faire réference à l'objet
+        return $this->email;
+    }
+    public function getMdp()
+    {
+        // $this permet de faire réference à l'objet
+        return $this->mdp;
+    }
+    public function getidRole()
+    {
+        // $this permet de faire réference à l'objet
+        return $this->idRole;
+    }
+    public function getPU()
+    {
+        // $this permet de faire réference à l'objet
+        return $this->pointsUtilisateur;
+    }
+    public function getAvatar()
+    {
+        // $this permet de faire réference à l'objet
+        return $this->avatar;
     }
 
-    public function setPassword($newmdp)
-    {
-        $this->mdp = $newmdp;
-    }
-
-    public function creerUtilisateur($email, $pseudo, $mdp)
-    {
-    $requete = getBDD()->prepare("INSERT INTO utilisateurs(email, pseudo, mdp)
-    VALUES(?, ?, ?)");
-    $requete->execute([$email, $pseudo, $mdp]);
-    return true;
-    }
+    
 }
