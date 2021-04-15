@@ -5,7 +5,7 @@ class Question extends Modele
     private $question;
 
     private $idReponse;
-    private $reponse;
+    private $reponse=[];
     private $validite;
 
     public function __construct($idQ=null)
@@ -22,7 +22,7 @@ class Question extends Modele
             $laReponse=$requete->fetch(PDO::FETCH_ASSOC);
             
             $this->idReponse=$laReponse["idReponse"];
-            $this->reponse=$laReponse["reponse"];
+            $this->reponse[]=$laReponse["reponse"];
             $this->validite=$laReponse["validite"];
 
  
@@ -41,7 +41,7 @@ class Question extends Modele
     public function getR()
     {
         // $this permet de faire réference à l'objet
-        return $this->reponse;
+        return $this->reponse["reponse"];
     }
     public function setR($newR)
     {

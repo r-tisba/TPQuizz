@@ -34,4 +34,21 @@ class Reponse extends Modele{
     {
         $this->validite = $newV;
     } 
+    public function initialiserReponse($idR, $reponse)
+    {
+        $this->idQuestion = $idR;
+        $this->reponse = $reponse;
+
+
+        $requete = $this->getBdd()->prepare("SELECT idReponse, reponse, validite FROM reponses LEFT JOIN association_questionsreponses USING(idReponse) WHERE idQuestion = ?");
+        $requete->execute(["idQuestion"]);
+        $reponsesQuiz = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($reponsesQuiz as $reponseQuiz)
+        {
+            $objetReponse = new Reponse();
+            $objetReponse->initialiserReponse($reponseQuiz["idReponse"], $reponseQuiz["reponse"], $reponseQuiz["validite"]);
+            $this->reponses[] = $objetReponse;
+        }
+    }
 }

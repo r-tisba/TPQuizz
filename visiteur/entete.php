@@ -5,7 +5,9 @@ require_once "../Modele/Modele.php";
 require_once "../Modele/Quizz.php";
 require_once "../Modele/Categorie.php";
 require_once "../Modele/Question.php";
-require_once "../Modele/Reponse.php";?>
+require_once "../Modele/Reponse.php";
+require_once "../Modele/Utilisateur.php";
+?>
 
 <!doctype html>
 <html lang="fr">
