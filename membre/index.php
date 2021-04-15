@@ -1,5 +1,7 @@
 <?php
 require_once "../membre/entete.php";
+require_once "../Modele/Utilisateur.php";
+
+$utilisateur = new Utilisateur($_SESSION["pseudo"]);
 ?>
-vous êtes membre
-<a class="btn btn-outline-danger ml-1" href="../membre/deconnexion.php">Se déconnecter</a>
+Vous êtes connecté <?= $utilisateur->getPseudo(); ?>
