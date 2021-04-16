@@ -19,24 +19,14 @@ class Question extends Modele
             $this->idQuestion = $idQ;
             $this->question = $laQuestion["question"];
 
-            /*
-            $requete=$this->getBdd()->prepare("SELECT * FROM reponses LEFT JOIN association_questionsreponses USING(idReponse) WHERE idQuestion = ?");
-            $requete->execute([$idQ]);
-            $laReponse=$requete->fetch(PDO::FETCH_ASSOC);
-            
-            $this->idReponse = $laReponse["idReponse"];
-            $this->reponse = $laReponse["reponse"];
-            $this->validite = $laReponse["validite"];
-            */
-            
 
             $requete = $this->getBdd()->prepare("SELECT * FROM reponses WHERE idQuestion = ?");
             $requete->execute([$idQ]);
             $reponses = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-            $this->idReponse=$reponses["idReponse"];
-            $this->reponse=$reponses["reponse"];
-            $this->validite=$reponses["validite"];
+            $this->idReponse=$reponses[$idQ]["idReponse"];
+            $this->reponse=$reponses[$idQ]["reponse"];
+            $this->validite=$reponses[$idQ]["validite"];
 
             foreach($reponses as $reponse)
             {
@@ -47,12 +37,11 @@ class Question extends Modele
         }
     }
 
-    public function initialiserQuestion($idQuestion, $description)
+    public function initialiserQuestion($idQuestion, $question)
     {
         $this->idQuestion = $idQuestion;
-        $this->description = $description;
+        $this->question = $question;
     
-
         $requete = $this->getBdd()->prepare("SELECT idReponse, reponse, validite FROM reponses WHERE idQuestion = ?");
         $requete->execute(["idQuestion"]);
         $reponsesQuiz = $requete->fetchAll(PDO::FETCH_ASSOC);

@@ -16,7 +16,7 @@ class Quiz extends Modele
             $requete->execute([$idQuiz]);
             $infos = $requete->fetch(PDO::FETCH_ASSOC);
 
-            $requete = $this->getBdd()->prepare("SELECT * FROM questions LEFT JOIN association_questionsquiz USING(idQuestion) WHERE idQuiz = ?");
+            $requete = $this->getBdd()->prepare("SELECT * FROM questions WHERE idQuiz = ?");
             $requete->execute([$idQuiz]);
             $questions = $requete->fetchAll(PDO::FETCH_ASSOC);
 
@@ -25,15 +25,14 @@ class Quiz extends Modele
 
             $this->categorie = $infos["idCategorie"];
 
-            $requete=$this->getBdd()->prepare("SELECT * FROM questions LEFT JOIN association_questionsquiz USING(idQuestion)
-             LEFT JOIN association_questionsreponses USING(idQuestion) LEFT JOIN reponses USING(idReponse)  WHERE idQuiz=?");
+            $requete = $this->getBdd()->prepare("SELECT * FROM questions LEFT JOIN reponses USING(idQuestion)  WHERE idQuiz = ?");
             $requete->execute([$idQuiz]);
-            $leQuiz=$requete->fetch(PDO::FETCH_ASSOC);
+            $leQuiz = $requete->fetch(PDO::FETCH_ASSOC);
 
-            $this->idReponse=$leQuiz["idReponse"];
-            $this->reponse=$leQuiz["reponse"];
-            $this->idQuestion=$leQuiz["idQuestion"];
-            $this->Question =$leQuiz["question"];
+            $this->idReponse = $leQuiz["idReponse"];
+            $this->reponse = $leQuiz["reponse"];
+            $this->idQuestion = $leQuiz["idQuestion"];
+            $this->Question = $leQuiz["question"];
 
             // Pour chaque question
             foreach ($questions as $question)

@@ -10,7 +10,7 @@ class Reponse extends Modele
     {
         if($idReponse != null)
         {
-            $requete = $this->getBdd()->prepare("SELECT * FROM reponses WHERE idReponse=?");
+            $requete = $this->getBdd()->prepare("SELECT * FROM reponses WHERE idReponse = ?");
             $requete->execute([$idReponse]);
             $LaReponse = $requete->fetch(PDO::FETCH_ASSOC);
 

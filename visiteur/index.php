@@ -41,11 +41,11 @@ $reponse = new Reponse(4);
 echo "Reponse 4 : " . $reponse->getReponse() . "<br>";
 echo "<br> <hr>";
 
+
 $question = new Question(1);
 echo "<pre>";
 print_r($question);
 echo "</pre>";
 
 echo $reponse->getValidite();
-
 ?>
