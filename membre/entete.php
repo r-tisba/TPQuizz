@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once "../modeles/modele.php";
+require_once "../Modele/Modele.php";
+require_once "../Modele/Quiz.php";
+require_once "../Modele/Utilisateur.php";
+require_once "../Modele/Categorie.php";
+require_once "../Modele/Question.php";
+require_once "../Modele/Reponse.php";
 ?>
 
 <!doctype html>
@@ -10,7 +16,7 @@ require_once "../modeles/modele.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz'ine</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styleQuizz.css">
+    <link rel="stylesheet" href="../styleQuiz.css">
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
 </head>
 

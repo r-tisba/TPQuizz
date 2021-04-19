@@ -1,0 +1,59 @@
+/*
+body
+{
+    background-color: #2E8BDF;
+}
+*/
+
+.card
+{
+    background-color: white;
+}
+
+.imageCategorie 
+{
+    max-width: 100%;
+    width: 20rem;
+    height: 20rem;
+}
+
+.imageQuiz
+{
+    max-width: 100%;
+    height: 25rem;
+}
+
+.zoom 
+{
+    padding: 10px;
+    transition: transform .2s; /* Animation */
+    margin: 0 auto;
+}
+  
+.zoom:hover 
+{
+    transform: scale(1.07); /* (1.5 = 150% zoom) */
+}
+
+.cardFooterCategorie
+{
+    background-color: white;
+}
+
+/* ------------------------------------------ Flèche retour ------------------------------------------ */
+.fleche
+{
+    padding-bottom: 3px;
+    height: 32px;
+    width: 30px;
+}
+.retour 
+{
+    text-decoration: none;    
+    color: #373A3C;
+    font-size: 1.4rem;
+}
+
+a:hover {
+    text-decoration: none;
+}
