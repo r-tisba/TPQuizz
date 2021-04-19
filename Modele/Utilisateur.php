@@ -42,6 +42,13 @@ class Utilisateur extends Modele
         $this->idRole=$utilisateur["idRole"];
     }
 
+    function recupererInfosConnexion($pseudo)
+    {
+        $requete = $this->getBDD()->prepare("SELECT idUtilisateur, pseudo, mdp, idRole FROM utilisateurs WHERE pseudo = ?");
+        $requete->execute([$pseudo]);
+        return $requete;
+    }
+
     public function inscription($email, $pseudo, $mdp)
     {
         $requete = $this->getBDD()->prepare("INSERT INTO utilisateurs(email, pseudo, mdp) VALUES(?, ?, ?)");
@@ -130,36 +137,4 @@ class Utilisateur extends Modele
     {
          $this->avatar=$newAvatar;
     }
-<<<<<<< HEAD
-=======
-
-    public function connexion($pseudo){
-        $requete = getBDD()->prepare("SELECT idUtilisateur, email, pseudo, mdp, idRole FROM utilisateurs WHERE pseudo = ?");
-        $requete->execute([$pseudo]);
-        $utilisateur=$requete->fetch(PDO::FETCH_ASSOC);
-
-        $this->idUtilisateur=$utilisateur["idUtilisateur"];
-        $this->pseudo=$utilisateur["pseudo"];
-        $this->email=$utilisateur["email"];
-        $this->mdp=$utilisateur["mdp"];
-        $this->idRole=$utilisateur["idRole"];
-
-
-    }
-    public function inscription($idUtilisateur, $pseudo, $email, $mdp, $idQuestionSecrete, $reponseSecrete){
-        $requete = getBDD()->prepare("INSERT INTO utilisateurs(email, pseudo, mdp)
-     VALUES(?, ?, ?)");
-     $requete->execute([$email, $pseudo, $mdp]);
-      $requete = getBDD()->prepare("INSERT INTO reponses_questionssecretes(idUtilisateur, idQuestion, reponse) VALUES(?,?,?)");
-      $requete->execute([$idUtilisateur, $reponseSecrete, $idQuestionSecrete]);
-        $this->idUtilisateur=$idUtilisateur;
-        $this->pseudo=$pseudo;
-        $this->email=$email;
-        $this->mdp=$mdp;
-        $this->reponseSecrete=$reponseSecrete;
-        $this->idQuestionSecrete=$idQuestionSecrete;
-    }
-
-    
->>>>>>> f7c050459624de4ad3cbe4ddc76eee1d82dfbb55
 }
