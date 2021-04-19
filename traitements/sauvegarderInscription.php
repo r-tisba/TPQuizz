@@ -1,7 +1,12 @@
 <?php
+<<<<<<< HEAD
 require_once "../Modele/Modele.php";
 require_once "../Modele/Utilisateur.php";
 $utilisateur = new Utilisateur();
+=======
+require_once "../Modele/Utilisateur.php";
+require_once "../Modele/Modele.php";
+>>>>>>> f7c050459624de4ad3cbe4ddc76eee1d82dfbb55
 
 if (!empty($_POST)) 
 {

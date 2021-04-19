@@ -82,8 +82,13 @@ class Question extends Modele
         $this->validite = $newValidite;
     } 
 
-    public function addReponse($reponse){
-        
+    public function addReponse($reponse, $validite, $idQuestion){
+        $requete=getBDD()->prepare("INSERT INTO reponses(reponses, validite, idQuestion) VALUES(?, ?, ?)");
+        $requete->execute([$reponse, $validite, $idQuestion]);
+        $this->idQuestion=$idQuestion;
+        $this->reponses=$reponse;
+        $this->validite=$validite;
+        return true;
     }
     
     public function removeReponse($idReponse){
