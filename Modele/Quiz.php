@@ -60,12 +60,5 @@ class Quiz extends Modele
     {
         return $this->categorie;
     }
-    public function getReponse()
-    {
-        return $this->reponse;
-    }
-    public function getIdReponse()
-    {
-        return $this->idReponse;
-    }
+    
 }

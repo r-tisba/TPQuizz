@@ -80,4 +80,15 @@ class Question extends Modele
         $this->validite = $newValidite;
     } 
 
+    public function addReponse($reponse){
+        
+    }
+    
+    public function removeReponse($idReponse){
+        $requete=$this->getBdd()->prepare("DELETE * FROM reponses WHERE idReponse=?");
+        $requete->execute([$idReponse]);
+        $this->reponses=$idReponse;
+    }
+
 }
+
