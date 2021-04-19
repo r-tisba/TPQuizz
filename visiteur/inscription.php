@@ -1,5 +1,13 @@
 <?php
 require_once "../visiteur/entete.php";
+require_once "../Modele/Modele.php";
+require_once "../Modele/Utilisateur.php";
+$utilisateur = new Utilisateur();
+
+$idUtilisateur = $utilisateur->recupererUtilisateurViaPseudo("Pod3us");
+print_r($idUtilisateur);
+echo "<br>";
+print_r($idUtilisateur["idUtilisateur"]);
 ?>
 
 <div class="container">
@@ -21,9 +29,11 @@ require_once "../visiteur/entete.php";
         <?php switch ($_GET["error"]) 
         {
             case "inscriptionsave": ?>
-                <?php echo "Une erreur s'est produite lors de l'enregistrement"; ?>
+                <?php echo "Une erreur s'est produite lors de l'enregistrement utilisateur"; ?>
                 <?php break;?>
-            
+            <?php case "qssave": ?>
+                <?php echo "Une erreur s'est produite lors de l'enregistrement qs"; ?>
+                <?php break;?>
             <?php case "emailnotvalid": ?>
                 <?php echo "L'adresse email choisi n'est pas valide"; ?>
                 <?php break;?>

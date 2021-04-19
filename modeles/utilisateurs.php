@@ -54,8 +54,6 @@
 //     return $requete->fetch(PDO::FETCH_ASSOC);
 // }
 
-
-
 // function recupererEmail($email)
 // {
 //     $requete = getBDD()->prepare("SELECT email FROM utilisateurs WHERE email = ?");
