@@ -64,5 +64,14 @@ class Quiz extends Modele
     {
         return $this->categorie;
     }
+
+    public function addQ($question, $idQuiz){
+        $requete=getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
+        $requete->execute([$question, $idQuiz]);
+        $this->questions=$question;
+        $this->idQuiz=$idQuiz;
+        return true;
+
+    }
     
 }

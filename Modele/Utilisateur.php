@@ -104,17 +104,16 @@ class Utilisateur extends Modele
 
 
     }
-    public function inscription($idUtilisateur, $pseudo, $email, $mdp, $avatar, $idQuestionSecrete, $reponseSecrete){
-        $requete = getBDD()->prepare("INSERT INTO utilisateurs(email, pseudo, mdp, avatar, reponseSecrete, idQuestionSecrete)
-     VALUES(?, ?, ?, ?, ?, ?)");
-     $requete->execute([$email, $pseudo, $mdp, $avatar]);
+    public function inscription($idUtilisateur, $pseudo, $email, $mdp, $idQuestionSecrete, $reponseSecrete){
+        $requete = getBDD()->prepare("INSERT INTO utilisateurs(email, pseudo, mdp)
+     VALUES(?, ?, ?)");
+     $requete->execute([$email, $pseudo, $mdp]);
       $requete = getBDD()->prepare("INSERT INTO reponses_questionssecretes(idUtilisateur, idQuestion, reponse) VALUES(?,?,?)");
       $requete->execute([$idUtilisateur, $reponseSecrete, $idQuestionSecrete]);
         $this->idUtilisateur=$idUtilisateur;
         $this->pseudo=$pseudo;
         $this->email=$email;
         $this->mdp=$mdp;
-        $this->avatar=$avatar;
         $this->reponseSecrete=$reponseSecrete;
         $this->idQuestionSecrete=$idQuestionSecrete;
     }

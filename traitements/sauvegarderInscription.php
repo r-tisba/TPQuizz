@@ -1,5 +1,6 @@
 <?php
-require_once "../modeles/modele.php";
+require_once "../Modele/Utilisateur.php";
+require_once "../Modele/Modele.php";
 
 if (!empty($_POST)) 
 {
