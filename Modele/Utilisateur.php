@@ -42,6 +42,13 @@ class Utilisateur extends Modele
         $this->idRole=$utilisateur["idRole"];
     }
 
+    function recupererInfosConnexion($pseudo)
+    {
+        $requete = $this->getBDD()->prepare("SELECT idUtilisateur, pseudo, mdp, idRole FROM utilisateurs WHERE pseudo = ?");
+        $requete->execute([$pseudo]);
+        return $requete;
+    }
+
     public function inscription($email, $pseudo, $mdp)
     {
         $requete = $this->getBDD()->prepare("INSERT INTO utilisateurs(email, pseudo, mdp) VALUES(?, ?, ?)");
