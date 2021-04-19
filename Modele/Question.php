@@ -24,9 +24,6 @@ class Question extends Modele
             $requete->execute([$idQ]);
             $reponses = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-            $this->idReponse=$reponses[$idQ]["idReponse"];
-            $this->reponse=$reponses[$idQ]["reponse"];
-            $this->validite=$reponses[$idQ]["validite"];
 
             foreach($reponses as $reponse)
             {
@@ -36,6 +33,11 @@ class Question extends Modele
 
         }
     }
+    /*
+    $Quiz = new Quiz(1)
+    echo $Quiz->getQuestions()[0]->getReponses()[3]
+    $questions = $Quizz->getQuestions()[2]
+    */
 
     public function initialiserQuestion($idQuestion, $question)
     {

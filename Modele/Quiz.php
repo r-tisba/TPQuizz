@@ -25,14 +25,17 @@ class Quiz extends Modele
 
             $this->categorie = $infos["idCategorie"];
 
+            /*
             $requete = $this->getBdd()->prepare("SELECT * FROM questions LEFT JOIN reponses USING(idQuestion)  WHERE idQuiz = ?");
             $requete->execute([$idQuiz]);
             $leQuiz = $requete->fetch(PDO::FETCH_ASSOC);
 
+            // A déclarer en amont
             $this->idReponse = $leQuiz["idReponse"];
             $this->reponse = $leQuiz["reponse"];
             $this->idQuestion = $leQuiz["idQuestion"];
             $this->Question = $leQuiz["question"];
+            */
 
             // Pour chaque question
             foreach ($questions as $question)
@@ -40,6 +43,7 @@ class Quiz extends Modele
                 $objetQuestion = new Question();
                 $objetQuestion->initialiserQuestion($question["idQuestion"], $question["question"]);
                 $this->questions[] = $objetQuestion;
+                // Le getter return le tableau questions[]
             }        
         }
     }
