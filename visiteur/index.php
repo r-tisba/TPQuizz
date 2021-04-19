@@ -47,5 +47,4 @@ echo "<pre>";
 print_r($question);
 echo "</pre>";
 
-echo $reponse->getValidite();
 ?>
