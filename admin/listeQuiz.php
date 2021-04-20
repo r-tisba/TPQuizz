@@ -10,7 +10,7 @@ $application = new Application();
     </a>
 </div>
 
-
+<a href="../Quiz/ajoutQuiz.php?id=<?=$_GET["id"]?>">Ajout quiz </a>
 
 <main>
 <div class="container-fluid content-row">
