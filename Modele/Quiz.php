@@ -17,26 +17,13 @@ class Quiz extends Modele
             $requete->execute([$idQuiz]);
             $infos = $requete->fetch(PDO::FETCH_ASSOC);
 
+            $this->idQuiz = $idQuiz;
+            $this->nomQuiz  = $infos["nomQuiz"];
+            $this->categorie = $infos["idCategorie"];
+
             $requete = $this->getBdd()->prepare("SELECT * FROM questions WHERE idQuiz = ?");
             $requete->execute([$idQuiz]);
             $questions = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-            $this->idQuiz = $idQuiz;
-            $this->nomQuiz  = $infos["nomQuiz"];
-
-            $this->categorie = $infos["idCategorie"];
-
-            /*
-            $requete = $this->getBdd()->prepare("SELECT * FROM questions LEFT JOIN reponses USING(idQuestion)  WHERE idQuiz = ?");
-            $requete->execute([$idQuiz]);
-            $leQuiz = $requete->fetch(PDO::FETCH_ASSOC);
-
-            // A déclarer en amont
-            $this->idReponse = $leQuiz["idReponse"];
-            $this->reponse = $leQuiz["reponse"];
-            $this->idQuestion = $leQuiz["idQuestion"];
-            $this->Question = $leQuiz["question"];
-            */
 
             // Pour chaque question
             foreach ($questions as $question)
