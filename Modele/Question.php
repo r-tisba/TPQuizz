@@ -45,7 +45,7 @@ class Question extends Modele
         $this->question = $question;
     
         $requete = $this->getBdd()->prepare("SELECT idReponse, reponse, validite FROM reponses WHERE idQuestion = ?");
-        $requete->execute(["idQuestion"]);
+        $requete->execute([$idQuestion]);
         $reponsesQuiz = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($reponsesQuiz as $reponseQuiz)
