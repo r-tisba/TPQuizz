@@ -56,9 +56,14 @@ class Question extends Modele
         }
     }
 
+<<<<<<< HEAD
     public function addReponse($reponse, $validite, $idQuestion)
     {
         $requete=getBDD()->prepare("INSERT INTO reponses(reponses, validite, idQuestion) VALUES(?, ?, ?)");
+=======
+    public function addReponse($reponse, $validite, $idQuestion){
+        $requete=$this->getBDD()->prepare("INSERT INTO reponses(reponse, validite, idQuestion) VALUES(?, ?, ?)");
+>>>>>>> 35efe8c68f9040746a82f633241bba92e97f1519
         $requete->execute([$reponse, $validite, $idQuestion]);
         $this->idQuestion=$idQuestion;
         $this->reponses=$reponse;

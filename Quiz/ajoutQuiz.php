@@ -34,43 +34,32 @@ require_once "entete.php";
     <div class="card card-white">
     <div class="card-body">
 
-    <h1> Ajout d'un nouveau quiz</h1>
-    <form method="post" action="../traitements/ajoutQuiz.php">
+    <h1> Ajout d'un nouveau quiz</h1><br>
+    <form method="post" action="../traitements/ajoutQuiz.php?id=<?=$_GET["id"];?>">
         <div class="form-group">
-            <label for="nomQuiz">Nouvelle question :</label>
-            <input type="text" class="form-control" name="nomQuiz" id="nomQuiz" placeholder="Saisissez la nom du quiz"/>
-        </div>
-        <div class="form-group">
-            <label for="categorie">Nouvelle question :</label>
-            <input type="selected" class="form-control" name="nomQuiz" id="nomQuiz" placeholder="Saisissez la nom du quiz"/>
-        </div>
+            <label for="nomQuiz"><h3><b>Nouveau Quiz :</b></h3></label>
+            <input type="text" class="form-control" name="nomQuiz" id="nomQuiz" placeholder="Saisissez la nom du quiz" />
+        </div><br>
         <?php
         for($i=0; $i<10; $i++){
         ?>
         <div class="form-group">
-            <label for="question">Nouvelle question :</label>
-            <input type="text" class="form-control" name="question" id="question" placeholder="Saisissez la question"/>
-        </div>
+            <label for="question"><h5><b>Question <?=$i+1;?> :</b></h5></label>
+            <input type="text" class="form-control" name="question[<?=$i?>]" id="question" placeholder="Saisissez la question"/>
+        </div><br>
         <div class="form-group">
-            <label for="reponse">bonne réponse :</label>
-            <input type="text" class="form-control" name="reponse" id="reponse" placeholder="Saisissez la bonne réponse"/>
-            <?php $LaReponse["validite"]=1;?>
-        </div>
+            <label for="reponse" style="color:green;"><b>bonne réponse :</b></label>
+            <input type="text" class="form-control" name="reponse[<?=$i?>][]" id="reponse" placeholder="Saisissez la bonne réponse"/>
+        </div><br>
         <div class="form-group">
-            <label for="reponse">mauvaise réponse :</label>
-            <input type="text" class="form-control" name="reponse" id="reponse" placeholder="Saisissez une mauvaise réponse"/>
-            <?php $LaReponse["validite"]=0;?>
+            <label for="reponse" style="color:red;"><b>mauvaises réponses :</b></label>
+            <input type="text" class="form-control" name="reponse[<?=$i?>][]" id="reponse" placeholder="Saisissez une mauvaise réponse"/><br>
+        
+            <input type="text" class="form-control" name="reponse[<?=$i?>][]" id="reponse" placeholder="Saisissez une mauvaise réponse"/><br>
+        
+            <input type="text" class="form-control" name="reponse[<?=$i?>][]" id="reponse" placeholder="Saisissez une mauvaise réponse"/><br>
         </div>
-        <div class="form-group">
-            <label for="reponse">mauvaise réponse :</label>
-            <input type="text" class="form-control" name="reponse" id="reponse" placeholder="Saisissez une mauvaise réponse"/>
-            <?php $LaReponse["validite"]=0;?>
-        </div>
-        <div class="form-group">
-            <label for="reponse">mauvaise réponse :</label>
-            <input type="text" class="form-control" name="reponse" id="reponse" placeholder="Saisissez une mauvaise réponse"/>
-            <?php $LaReponse["validite"]=0;?>
-        </div>
+        <hr>
         <?php
         }
         ?> 

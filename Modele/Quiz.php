@@ -4,7 +4,7 @@ class Quiz extends Modele
 {
     private $idQuiz; // int
     private $nomQuiz; // string
-    private $auteur; // string
+    private $idUtilisateur; // string
 
     private $categorie; // objet
     private $questions = []; // array
@@ -36,23 +36,52 @@ class Quiz extends Modele
         }
     }
 
+<<<<<<< HEAD
     public function addQ($question, $idQuiz)
+=======
+    public function getNomQuiz()
+    {
+       return $this->nomQuiz;
+    }
+    public function getIdQuiz()
+    {
+       return $this->idQuiz;
+    }
+    public function getQuestion()
+    {
+        return $this->Question;
+    }
+    public function getIdQuestion()
+>>>>>>> 35efe8c68f9040746a82f633241bba92e97f1519
     {
         $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
         $requete->execute([$question, $idQuiz]);
         $this->questions=$question;
         $this->idQuiz=$idQuiz;
-        return true;
+        $requete=$this->getBDD()->prepare("SELECT MAX(idQuestion) AS ID_Question FROM questions");
+        $requete->execute();
+        $idQuestion=$requete->fetch(PDO::FETCH_ASSOC);
+        return $idQuestion["ID_Question"];
 
     }
+<<<<<<< HEAD
     public function addQuiz($nomQuiz, $auteur, $idCategorie)
     {
         $requete=$this->getBDD()->prepare("INSERT INTO questions(nomQuiz, auteur, idCategorie) VALUES(?,?,?)");
         $requete->execute([$nomQuiz, $auteur, $idCategorie]); 
+=======
+    public function addQuiz($nomQuiz, $idUtilisateur, $idCategorie){
+        $requete=$this->getBDD()->prepare("INSERT INTO quiz(nomQuiz, idUtilisateur, idCategorie) VALUES(?,?,?)");
+        $requete->execute([$nomQuiz, $idUtilisateur, $idCategorie]); 
+        
+>>>>>>> 35efe8c68f9040746a82f633241bba92e97f1519
         $this->nomQuiz  = $nomQuiz;
-        $this->auteur  = $auteur;
-        $this->categorie = $idCategorie;
-        return true;
+        $this->idUtilisateur  = $idUtilisateur;
+        $this->categorie = new Categorie($idCategorie);
+        $requete=$this->getBDD()->prepare("SELECT MAX(idQuiz) AS ID_Quiz FROM quiz");
+        $requete->execute();
+        $idQuiz=$requete->fetch(PDO::FETCH_ASSOC);
+        return $idQuiz["ID_Quiz"];
 
     }
 
