@@ -3,7 +3,7 @@ require_once "../visiteur/entete.php";
 
 if (!empty($_SESSION["idRole"]) && $_SESSION["idRole"] == 2) 
 {
-    header("location:../admin/indexAdmin.php");
+    header("location:../admin/index.php");
 } 
 if (!empty($_SESSION["idRole"]) && $_SESSION["idRole"] == 1) 
 {
@@ -47,5 +47,4 @@ echo "<pre>";
 print_r($question);
 echo "</pre>";
 
-echo $reponse->getValidite();
 ?>

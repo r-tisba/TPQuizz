@@ -4,6 +4,7 @@ class Quiz extends Modele
 {
     private $idQuiz; // int
     private $nomQuiz; // string
+    private $auteur; // string
 
     private $categorie; // objet
     private $questions = []; // array
@@ -51,12 +52,23 @@ class Quiz extends Modele
     {
         return $this->categorie;
     }
-    public function getReponse()
-    {
-        return $this->reponse;
+
+    public function addQ($question, $idQuiz){
+        $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
+        $requete->execute([$question, $idQuiz]);
+        $this->questions=$question;
+        $this->idQuiz=$idQuiz;
+        return true;
+
     }
-    public function getIdReponse()
-    {
-        return $this->idReponse;
+    public function addQuiz($nomQuiz, $auteur, $idCategorie){
+        $requete=$this->getBDD()->prepare("INSERT INTO questions(nomQuiz, auteur, idCategorie) VALUES(?,?,?)");
+        $requete->execute([$nomQuiz, $auteur, $idCategorie]); 
+        $this->nomQuiz  = $nomQuiz;
+        $this->auteur  = $auteur;
+        $this->categorie = $idCategorie;
+        return true;
+
     }
+    
 }

@@ -1,5 +1,7 @@
 <?php
-require_once "../modeles/modele.php";
+require_once "../Modele/Modele.php";
+require_once "../Modele/Utilisateur.php";
+$utilisateur = new Utilisateur();
 
 if (!empty($_POST)) 
 {
@@ -8,12 +10,11 @@ if (!empty($_POST))
     && !empty($_POST["mdp"]) && !empty($_POST["verifMdp"]) 
     && !empty($_POST["idQuestion"]) && !empty($_POST["reponseQuestionSecrete"])) 
     {
-        
         // Verification de la validité de l'email
         if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) 
         {
             // Verification que l'email est unique
-            $email = recupererEmail($_POST["email"]);
+            $email = $utilisateur->recupererEmail($_POST["email"]);
             if($email->rowCount() == 0)
             {
                // Vérification que le mot de passe fait au moins 6 caractères
@@ -23,33 +24,33 @@ if (!empty($_POST))
                     if($_POST["mdp"] == $_POST["verifMdp"])
                     {
                         $mdp = password_hash($_POST["mdp"], PASSWORD_BCRYPT);
-                        if (creerUtilisateur($_POST["email"], $_POST["pseudo"], $mdp) == true) 
+                        if ($utilisateur->inscription($_POST["email"], $_POST["pseudo"], $mdp) == true) 
                         {
-                            $idUtilisateur = recupererUtilisateurViaPseudo($_POST["pseudo"]);
-                            if(ajouterReponseQuestionSecrete($idUtilisateur["idUtilisateur"], $_POST["idQuestion"], $_POST["reponseQuestionSecrete"]))
+                            $idUtilisateur = $utilisateur->recupererUtilisateurViaPseudo($_POST["pseudo"]);
+                            if($utilisateur->ajouterReponseQuestionSecrete($idUtilisateur["idUtilisateur"], $_POST["idQuestion"], $_POST["reponseQuestionSecrete"]) == true)
                             {
-                                header("location:/visiteur/inscription.php?success=inscription");
+                                header("location:../visiteur/inscription.php?success=inscription");
                             } else {
-                                header("location:/visiteur/inscription.php?error=inscriptionsave");
+                                header("location:../visiteur/inscription.php?error=qssave");
                             }
                         } else {
-                            header("location:/visiteur/inscription.php?error=inscriptionsave");
+                            header("location:../visiteur/inscription.php?error=inscriptionsave");
                         }
                     } else {
-                        header("location:/visiteur/inscription.php?error=mdpnotsame");
+                        header("location:../visiteur/inscription.php?error=mdpnotsame");
                     }
                 } else {
-                    header("location:/visiteur/inscription.php?error=mdplength");
+                    header("location:../visiteur/inscription.php?error=mdplength");
                 }
             } else {
-                header("location:/visiteur/inscription.php?error=emailnotunique");
+                header("location:../visiteur/inscription.php?error=emailnotunique");
             }
         } else {
-            header("location:/visiteur/inscription.php?error=emailnotvalid");
+            header("location:../visiteur/inscription.php?error=emailnotvalid");
         }
     } else {
-        header("location:/visiteur/inscription.php?error=missing");
+        header("location:../visiteur/inscription.php?error=missing");
     }
 } else {
-    header("location:/");
+    header("location:../");
 }

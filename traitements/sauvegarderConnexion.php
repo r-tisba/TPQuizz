@@ -1,5 +1,7 @@
 <?php
-require_once "../modeles/modele.php";
+require_once "../Modele/Modele.php";
+require_once "../Modele/Utilisateur.php";
+$utilisateur = new Utilisateur();
 
 if(isset($_POST["envoi"]) && !empty($_POST["envoi"]) && $_POST["envoi"] == 1)
 {
@@ -11,7 +13,7 @@ if(isset($_POST["envoi"]) && !empty($_POST["envoi"]) && $_POST["envoi"] == 1)
         // Vérification que le mot de passe fait au moins 6 caractères
         if(strlen($_POST["mdp"]) >= 6)
         {
-            $requete = recupererInfosConnexion($pseudo);
+            $requete = $utilisateur->recupererInfosConnexion($pseudo);
 
             // Vérification si le pseudo existe
             if($requete->rowCount() != 0)
