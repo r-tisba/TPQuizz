@@ -1,10 +1,46 @@
-/*
+/* PERMET D'AFFICHER LE CURSEUR DANS LES INPUTS ET TEXTAREA */
+input
+{
+  caret-color: black;
+}
+textarea
+{
+  caret-color: black;
+}
+
+.display-4
+{
+  font-size: 1.8rem;
+}
+
 body
 {
-    background-color: #2E8BDF;
+  caret-color: transparent;
+  /*
+  background: rgb(213, 231, 180);
+  */
 }
-*/
 
+/* --------------------------------------- Hamburger --------------------------------------- */
+.navbar.navbar-7 .navbar-toggler-icon 
+{
+  background-image: url('https://image.flaticon.com/icons/png/512/60/60995.png');
+  border-style: ridge;
+  border-color: black;
+}
+
+.navbar.navbar-7
+{
+  border-style: ridge;
+  border-color: black;
+  border-radius: 10px;
+}
+
+.card.shadow-sm
+{
+  border-style: solid;
+  border-color: black;
+}
 .card
 {
     background-color: white;
@@ -40,7 +76,7 @@ body
     background-color: white;
 }
 
-/* ------------------------------------------ Flèche retour ------------------------------------------ */
+/* --------------------------------------- Flèche retour --------------------------------------- */
 .fleche
 {
     padding-bottom: 3px;

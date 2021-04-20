@@ -45,8 +45,9 @@ class Reponse extends Modele
         $this->validite = $newValidite;
     } 
 
-    public function setIdReponse($newIdReponse){
-
+    public function setIdReponse($newIdReponse)
+    {
+        $this->validite = $newIdReponse;
     }
     
 }

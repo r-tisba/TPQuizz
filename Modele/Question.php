@@ -56,7 +56,8 @@ class Question extends Modele
         }
     }
 
-    public function addReponse($reponse, $validite, $idQuestion){
+    public function addReponse($reponse, $validite, $idQuestion)
+    {
         $requete=getBDD()->prepare("INSERT INTO reponses(reponses, validite, idQuestion) VALUES(?, ?, ?)");
         $requete->execute([$reponse, $validite, $idQuestion]);
         $this->idQuestion=$idQuestion;
@@ -65,7 +66,8 @@ class Question extends Modele
         return true;
     }
     
-    public function removeReponse($idReponse){
+    public function removeReponse($idReponse)
+    {
         $requete=$this->getBdd()->prepare("DELETE * FROM reponses WHERE idReponse=?");
         $requete->execute([$idReponse]);
         $this->reponses=$idReponse;

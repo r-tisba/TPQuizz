@@ -36,6 +36,26 @@ class Quiz extends Modele
         }
     }
 
+    public function addQ($question, $idQuiz)
+    {
+        $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
+        $requete->execute([$question, $idQuiz]);
+        $this->questions=$question;
+        $this->idQuiz=$idQuiz;
+        return true;
+
+    }
+    public function addQuiz($nomQuiz, $auteur, $idCategorie)
+    {
+        $requete=$this->getBDD()->prepare("INSERT INTO questions(nomQuiz, auteur, idCategorie) VALUES(?,?,?)");
+        $requete->execute([$nomQuiz, $auteur, $idCategorie]); 
+        $this->nomQuiz  = $nomQuiz;
+        $this->auteur  = $auteur;
+        $this->categorie = $idCategorie;
+        return true;
+
+    }
+
     public function getNomQuiz()
     {
        return $this->nomQuiz;
@@ -52,23 +72,4 @@ class Quiz extends Modele
     {
         return $this->categorie;
     }
-
-    public function addQ($question, $idQuiz){
-        $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
-        $requete->execute([$question, $idQuiz]);
-        $this->questions=$question;
-        $this->idQuiz=$idQuiz;
-        return true;
-
-    }
-    public function addQuiz($nomQuiz, $auteur, $idCategorie){
-        $requete=$this->getBDD()->prepare("INSERT INTO questions(nomQuiz, auteur, idCategorie) VALUES(?,?,?)");
-        $requete->execute([$nomQuiz, $auteur, $idCategorie]); 
-        $this->nomQuiz  = $nomQuiz;
-        $this->auteur  = $auteur;
-        $this->categorie = $idCategorie;
-        return true;
-
-    }
-    
 }

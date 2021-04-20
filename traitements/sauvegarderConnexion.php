@@ -31,16 +31,7 @@ if(isset($_POST["envoi"]) && !empty($_POST["envoi"]) && $_POST["envoi"] == 1)
                     $_SESSION["idUtilisateur"] = $utilisateur["idUtilisateur"];
 
                     header("location:../visiteur/connexion.php?success=connexion");
-
-                    ?>
-                    <div class="alert alert-success mt-3">
-                    Vous êtes connecté<br>
-                    Vous allez être redirigé vers la page d'accueil<br>
-                    <a href="../visiteur/connexion.php">Cliquez ici pour une redirection manuelle</a>
-                    </div>
-                    <?php
-                    header("refresh:4;../visiteur/connexion.php");
-
+                    
                 } else {
                     header("location:../visiteur/connexion.php?error=falsemdp");
             }

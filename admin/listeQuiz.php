@@ -10,8 +10,6 @@ $application = new Application();
     </a>
 </div>
 
-
-
 <main>
 <div class="container-fluid content-row">
     <div class="card-deck row">
@@ -44,3 +42,6 @@ $application = new Application();
 </main>
 
 </div>
+
+<?php
+require_once "pied.php";

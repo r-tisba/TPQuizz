@@ -19,6 +19,39 @@ class Categorie extends Modele
         }
     }
 
+    public function creerCategorie($nomCategorie, $illustration)
+    {
+        $requete = $this->getBDD()->prepare("INSERT INTO categories(nomCategorie, illustration) VALUES (?, ?)");
+        $requete->execute([$nomCategorie, $illustration]);
+        return true;
+    
+        $this->nomCategorie=$nomCategorie;
+        $this->illustration=$illustration;
+    }
+
+    public function supprimerCategorie($idCategorie)
+    {
+        $requete = $this->getBDD()->prepare("DELETE FROM categories WHERE idCategorie = ?");
+        $requete->execute([$idCategorie]);
+        return true;
+    
+        $this->idCategorie=$idCategorie;
+    }
+
+    public function modifierCategorie($idCategorie, $nomCategorie, $illustration)
+    {
+        $requete = getBDD()->prepare("UPDATE categories SET nomCategorie = ?, illustration = ? WHERE idCategorie = ?");
+        $requete->execute([$nomCategorie, $illustration, $idCategorie]);
+        return true;
+    }
+
+    public function recupererNomCategorie($nomCategorie)
+    {
+        $requete = $this->getBDD()->prepare("SELECT nomCategorie FROM categories WHERE nomCategorie = ?");
+        $requete->execute([$nomCategorie]);
+        return $requete;
+    }
+    
     public function getIdCat()
     {
         return $this->idCategorie;

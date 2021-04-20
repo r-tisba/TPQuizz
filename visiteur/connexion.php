@@ -54,9 +54,14 @@ require_once "entete.php";
                     <input type="password" class="form-control" name="mdp" id="mdp" placeholder="Saisissez votre mot de passe" required/>
                 </div>
                 <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary" name="envoi" id="envoi" value="1">Connexion</button>
+                    <button type="submit" class="btn btn-outline-primary" name="envoi" id="envoi" value="1">Connexion</button>
                 </div>
         </form>
+        <div class="d-flex justify-content-center">
+            <p>Mot de passe oublié ? Cliquez 
+                <a href="mdpOublie.php">ici</a>
+            </p>
+        </div>
         <?php 
     }
     ?>
