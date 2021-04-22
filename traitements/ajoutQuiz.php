@@ -11,6 +11,7 @@ session_start();
 // print_r($_POST);
 // echo "</pre>";
 // exit;
+$count=-1;
 if (!empty($_GET["id"]))
 {
     $idCategorie=$_GET["id"];
@@ -20,39 +21,26 @@ if (!empty($_GET["id"]))
         $idUtilisateur=$_SESSION["idUtilisateur"];
         $nouvQuiz= new Quiz();
         $idQuiz=$nouvQuiz->addQuiz($nomQuiz, $idUtilisateur, $idCategorie);
-        foreach($_POST["question"] as $question){
-            if(!empty($_POST["question"]) && !empty($idQuiz))
-            {
-                $idQuestion=$nouvQuiz->addQ($question, $idQuiz);
-                foreach($_POST["reponse"] as $reponse){
-                if(!empty($reponse)&&!empty($idQuestion)){
-                        $validite;
-                        $count=0;
-                        $compteur=0;
-                        
-                        for($i=0; $i<4; $i++){
-                            $reponse[$compteur++][$i];
-                            if($i=0){
-                                $validite=1;
-                            }
-                        }
-                        
-                        $Laquestion= new Question($idQuestion);
-                        if($Laquestion->addReponse($reponse[$count++][$i], $validite, $idQuestion)){
-                            header("location:../admin/ajoutQuestion.php?success=ajout");
-                        }else{
-                            header("location:../admin/ajoutQuestion.php?error=ajoutReponse");
-                        }
-                    }else{
-                        header("location:../admin/ajoutQuestion.php?error=reponseVide");
+        foreach($_POST["question"] as $cleQuestion => $question){    
+            $nouvQuestion = new Question();
+            // déplacer la méthode addQ vers Question
+            $idQuestion=$nouvQuestion->addQ($question, $idQuiz);
+            $reponses=$_POST["reponse"][$cleQuestion];
 
-                    }
+            foreach($reponses as $cleReponse=>$reponse){
+                $validite = 0;
+                if($cleReponse == 0){
+                    $validite=1;
                 }
-                
-            }else{
-                header("location:../admin/ajoutQuestion.php?error=questionVide");
+                $nouvReponse = new Reponse();
+                // déplacer la méthode addR vers Reponse
+                $nouvReponse->addR($reponse, $validite, $idQuestion);
+
             }
-        }
+                    
+        }                                            
+        header("location:../admin/ajoutQuestion.php?success=ajout");
+
         
     }else{
     header("location:../admin/ajoutQuestion.php?error=missing");

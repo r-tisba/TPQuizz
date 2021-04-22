@@ -56,15 +56,7 @@ class Question extends Modele
         }
     }
 
-    public function addReponse($reponse, $validite, $idQuestion)
-    {
-        $requete=$this->getBDD()->prepare("INSERT INTO reponses(reponse, validite, idQuestion) VALUES(?, ?, ?)");
-        $requete->execute([$reponse, $validite, $idQuestion]);
-        $this->idQuestion=$idQuestion;
-        $this->reponses=$reponse;
-        $this->validite=$validite;
-        return true;
-    }
+    
     
     public function removeReponse($idReponse)
     {
@@ -98,5 +90,17 @@ class Question extends Modele
     {
         $this->validite = $newValidite;
     } 
+    public function addQ($question, $idQuiz)
+    {
+        $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
+        $requete->execute([$question, $idQuiz]);
+        $this->questions=$question;
+        $this->idQuiz=$idQuiz;
+        $requete=$this->getBDD()->prepare("SELECT MAX(idQuestion) AS ID_Question FROM questions");
+        $requete->execute();
+        $idQuestion=$requete->fetch(PDO::FETCH_ASSOC);
+        return $idQuestion["ID_Question"];
+
+    }
 }
 

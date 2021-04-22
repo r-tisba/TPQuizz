@@ -5,6 +5,7 @@ class Reponse extends Modele
     private $idReponse;
     private $reponse;
     private $validite;
+    private $idQuestion;
 
     public function __construct($idReponse=null)
     {
@@ -49,5 +50,13 @@ class Reponse extends Modele
     {
         $this->validite = $newIdReponse;
     }
-    
+    public function addR($reponse, $validite, $idQuestion)
+    {
+        $requete=$this->getBDD()->prepare("INSERT INTO reponses(reponse, validite, idQuestion) VALUES(?, ?, ?)");
+        $requete->execute([$reponse, $validite, $idQuestion]);
+        $this->idQuestion=$idQuestion;
+        $this->reponses=$reponse;
+        $this->validite=$validite;
+        return true;
+    }
 }
