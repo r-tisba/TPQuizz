@@ -35,11 +35,11 @@ require_once "../Modele/Reponse.php";
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
         <?php
-        if(!empty($_SESSION["identifiant"]) && $_SESSION["idRole"] == 2)
+        if(!empty($_SESSION["pseudo"]))
         {
         ?>   
         <li class="nav-item">
-          <a class="nav-item nav-link" href="inscription.php">Inscrire un employé</a>
+          <a class="nav-item nav-link" href="listeUtilisateurs.php">Autre joueurs</a>
         </li>
         <?php  
         }

@@ -63,6 +63,18 @@ class Utilisateur extends Modele
         $this->mdp=$mdp;
     }
 
+    public function creerUtilisateur($email, $pseudo, $mdp, $idRole)
+    {
+        $requete = $this->getBDD()->prepare("INSERT INTO utilisateurs(email, pseudo, mdp, idRole) VALUES(?, ?, ?, ?)");
+        $requete->execute([$email, $pseudo, $mdp, $idRole]);
+        return true;
+
+        $this->email=$email;
+        $this->pseudo=$pseudo;
+        $this->idRole=$idRole;
+        $this->mdp=$mdp;
+    }
+
     public function ajouterReponseQuestionSecrete($idUtilisateur, $idQuestion, $reponse)
     {
         $requete = $this->getBDD()->prepare("INSERT INTO reponses_questionssecretes(idUtilisateur, idQuestion, reponse) VALUES(?, ?, ?)");
@@ -94,6 +106,13 @@ class Utilisateur extends Modele
     {
         $requete = $this->getBDD()->prepare("SELECT idUtilisateur FROM utilisateurs WHERE pseudo = ?");
         $requete->execute([$pseudo]);
+        return $requete->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function recupererNomRoleViaIdRole($idRole)
+    {
+        $requete = $this->getBDD()->prepare("SELECT nomRole FROM utilisateurs LEFT JOIN roles USING(idRole) WHERE idRole = ?");
+        $requete->execute([$idRole]);
         return $requete->fetch(PDO::FETCH_ASSOC);
     }
 

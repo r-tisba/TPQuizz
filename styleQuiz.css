@@ -93,3 +93,9 @@ body
 a:hover {
     text-decoration: none;
 }
+
+.avatarProfil
+{
+  width: 9rem;
+  height: 9rem;
+}

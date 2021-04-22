@@ -10,11 +10,8 @@ $application = new Application();
     </a>
 </div>
 
-<<<<<<< HEAD
-=======
 <a href="../Quiz/ajoutQuiz.php?id=<?=$_GET["id"]?>">Ajout quiz </a>
 
->>>>>>> 35efe8c68f9040746a82f633241bba92e97f1519
 <main>
 <div class="container-fluid content-row">
     <div class="card-deck row">

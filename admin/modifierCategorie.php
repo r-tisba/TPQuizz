@@ -17,7 +17,6 @@ $idCategorie = $categorie->getIdCat();
 $nomCategorie = $categorie->getNomCat();
 $illustration = $categorie->getIllustration();
 
-print_r($illustration);
 ?>
 
 <div class="container">
@@ -65,6 +64,8 @@ if (!empty($_GET["error"]))
         <div class="form-group">
             <label for="nomCategorie">Libellé de la catégorie :</label>
             <input type="text" class="form-control" name="nomCategorie" id="nomCategorie" placeholder="Saisissez le nouveau nom" value="<?=$nomCategorie?>"/>
+        </div>
+        <div class="form-group">
             <label for="illustration">Illustration :</label>
             <input type="text" class="form-control" name="illustration" id="illustration" placeholder="Saisissez le lien de la nouvelle image" value="<?=$illustration;?>"/>
         </div>
