@@ -36,18 +36,7 @@ class Quiz extends Modele
         }
     }
 
-    public function addQ($question, $idQuiz)
-    {
-        $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
-        $requete->execute([$question, $idQuiz]);
-        $this->questions=$question;
-        $this->idQuiz=$idQuiz;
-        $requete=$this->getBDD()->prepare("SELECT MAX(idQuestion) AS ID_Question FROM questions");
-        $requete->execute();
-        $idQuestion=$requete->fetch(PDO::FETCH_ASSOC);
-        return $idQuestion["ID_Question"];
-
-    }
+    
     public function addQuiz($nomQuiz, $idUtilisateur, $idCategorie){
         $requete=$this->getBDD()->prepare("INSERT INTO quiz(nomQuiz, idUtilisateur, idCategorie) VALUES(?,?,?)");
         $requete->execute([$nomQuiz, $idUtilisateur, $idCategorie]); 
