@@ -11,7 +11,11 @@ session_start();
 // print_r($_POST);
 // echo "</pre>";
 // exit;
-$count=-1;
+$illustration;
+if (empty($_POST["illustration"]))
+{
+    $illustration=$_POST["illustration"] = "../images/design/illustrationQuizDefaut.jpg";
+}
 if (!empty($_GET["id"]))
 {
     $idCategorie=$_GET["id"];
@@ -20,7 +24,7 @@ if (!empty($_GET["id"]))
         $nomQuiz=$_POST["nomQuiz"];
         $idUtilisateur=$_SESSION["idUtilisateur"];
         $nouvQuiz= new Quiz();
-        $idQuiz=$nouvQuiz->addQuiz($nomQuiz, $idUtilisateur, $idCategorie);
+        $idQuiz=$nouvQuiz->addQuiz($nomQuiz, $idUtilisateur, $idCategorie, $illustration);
         foreach($_POST["question"] as $cleQuestion => $question){    
             $nouvQuestion = new Question();
             // déplacer la méthode addQ vers Question
@@ -39,12 +43,12 @@ if (!empty($_GET["id"]))
             }
                     
         }                                            
-        header("location:../admin/ajoutQuestion.php?success=ajout");
+        header("location:../Quiz/FinAjoutQuiz.php?success=ajout");
 
         
     }else{
-    header("location:../admin/ajoutQuestion.php?error=missing");
+    header("location:../Quiz/FinAjoutQuiz.php?error=missing");
 }
 }else{
-    header("location:../admin/ajoutQuestion.php?error=id");
+    header("location:../Quiz/FinAjoutQuiz.php?error=id");
 }
