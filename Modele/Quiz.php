@@ -5,6 +5,7 @@ class Quiz extends Modele
     private $idQuiz; // int
     private $nomQuiz; // string
     private $idUtilisateur; // string
+    private $illustration; // string
 
     private $categorie; // objet
     private $questions = []; // array
@@ -37,12 +38,13 @@ class Quiz extends Modele
     }
 
     
-    public function addQuiz($nomQuiz, $idUtilisateur, $idCategorie){
-        $requete=$this->getBDD()->prepare("INSERT INTO quiz(nomQuiz, idUtilisateur, idCategorie) VALUES(?,?,?)");
-        $requete->execute([$nomQuiz, $idUtilisateur, $idCategorie]); 
+    public function addQuiz($nomQuiz, $idUtilisateur, $idCategorie, $illustration){
+        $requete=$this->getBDD()->prepare("INSERT INTO quiz(nomQuiz, idUtilisateur, idCategorie, illustration) VALUES(?,?,?,?)");
+        $requete->execute([$nomQuiz, $idUtilisateur, $idCategorie, $illustration]); 
         
         $this->nomQuiz  = $nomQuiz;
         $this->idUtilisateur  = $idUtilisateur;
+        $this->illustration  = $illustration;
         $this->categorie = new Categorie($idCategorie);
         $requete=$this->getBDD()->prepare("SELECT MAX(idQuiz) AS ID_Quiz FROM quiz");
         $requete->execute();

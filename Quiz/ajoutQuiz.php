@@ -39,6 +39,10 @@ require_once "entete.php";
         <div class="form-group">
             <label for="nomQuiz"><h3><b>Nouveau Quiz :</b></h3></label>
             <input type="text" class="form-control" name="nomQuiz" id="nomQuiz" placeholder="Saisissez la nom du quiz" />
+        </div>
+        <div class="form-group">
+            <label for="nomQuiz"><h3><b>Lien de l'illustration (optionelle) :</b></h3></label>
+            <input type="text" class="form-control" name="illustration" id="illustration" placeholder="Saisissez le lien de l'illustration" />
         </div><br>
         <?php
         for($i=0; $i<10; $i++){

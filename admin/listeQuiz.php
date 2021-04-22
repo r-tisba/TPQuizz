@@ -9,12 +9,9 @@ $application = new Application();
         <img src="../images/design/flecheRetour.png" class="fleche">Retour
     </a>
 </div>
-
-<<<<<<< HEAD
-=======
-<a href="../Quiz/ajoutQuiz.php?id=<?=$_GET["id"]?>">Ajout quiz </a>
-
->>>>>>> 35efe8c68f9040746a82f633241bba92e97f1519
+<div class="justify-content-center col-6">
+<a href="../Quiz/ajoutQuiz.php?id=<?=$_GET["id"]?>" class="btn btn-primary">Ajout quiz </a>
+</div>
 <main>
 <div class="container-fluid content-row">
     <div class="card-deck row">
