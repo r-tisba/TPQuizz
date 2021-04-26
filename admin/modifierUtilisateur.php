@@ -69,7 +69,7 @@ if (!empty($_GET["error"]))
     <form method="post" action="../traitements/modifierUtilisateur.php?id=<?=$idUtilisateur;?>">
         <div class="form-group">
             <label for="email">Adresse mail :</label>
-            <input type="text" class="form-control" name="nomCategorie" id="nomCategorie" placeholder="Saisissez la nouvelle adresse mail" value="<?=$email?>"/>
+            <input type="text" class="form-control" name="email" id="email" placeholder="Saisissez la nouvelle adresse mail" value="<?=$email?>"/>
         </div>
         <div class="form-group">
             <label for="pseudo">Pseudo :</label>
@@ -82,12 +82,15 @@ if (!empty($_GET["error"]))
                         $roles = $application->getRoles();
                         foreach ($roles as $role)
                         {
-                            ?>
-                            <option value="<?=$role["nomRole"];?>"
-                                <?=($role["idRole"] === $idRole ? "selected" : "");?>>
-                                <?=$role["nomRole"];?>
-                            </option>
-                            <?php
+                            if ($role["idRole"] != 3)
+                            {
+                                ?>
+                                <option value="<?=$role["idRole"];?>"
+                                    <?=($role["idRole"] === $idRole ? "selected" : "");?>>
+                                    <?=$role["nomRole"];?>
+                                </option>
+                                <?php                          
+                            }
                         }
                         ?>
                     </select>

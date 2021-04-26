@@ -10,6 +10,7 @@ $application = new Application();
     </a>
 </div>
 
+
 <!-- ---------------------- AJOUT D'UN NOUVEAU UTILISATEUR ---------------------- -->
 <div class="container pl-0">
 
@@ -18,6 +19,22 @@ if(!empty($_GET["success"]) && $_GET["success"] == "ajout")
 {
     ?>
     <div class="alert alert-success mt-3">L'utilisateur a bien été ajouté</div>
+        <?php
+        header("refresh:2;../admin/listeUtilisateurs.php");
+}
+
+if(!empty($_GET["success"]) && $_GET["success"] == "ajoutAmi") 
+{
+    ?>
+    <div class="alert alert-success mt-3">L'utilisateur a bien été ajouté en ami</div>
+        <?php
+        header("refresh:2;../admin/listeUtilisateurs.php");
+}
+
+if(!empty($_GET["success"]) && $_GET["success"] == "bannissement") 
+{
+    ?>
+    <div class="alert alert-success mt-3">L'utilisateur a bien été banni</div>
         <?php
         header("refresh:2;../admin/listeUtilisateurs.php");
 }
@@ -32,7 +49,7 @@ if (!empty($_GET["error"]))
                 <?php echo "Une erreur s'est produite lors de l'enregistrement utilisateur"; ?>
                 <?php break;?>
             <?php case "qssave": ?>
-                <?php echo "Une erreur s'est produite lors de l'enregistrement qs"; ?>
+                <?php echo "Une erreur s'est produite lors de l'enregistrement de la qs"; ?>
                 <?php break;?>
             <?php case "emailnotvalid": ?>
                 <?php echo "L'adresse email choisi n'est pas valide"; ?>
@@ -48,6 +65,18 @@ if (!empty($_GET["error"]))
                 <?php break;?>
             <?php case "missing": ?>
                 <?php echo "Au moins un champ n'a pas été saisi"; ?>
+                <?php break;?>
+            <?php case "fonction": ?>
+                <?php echo "Erreur lors de la modification du rôle"; ?>
+                <?php break;?>
+            <?php case "missingid": ?>
+                <?php echo "Impossible de récuperer l'id de l'utilisateur"; ?>
+                <?php break;?>
+            <?php case "ajoutAmi": ?>
+                <?php echo "Erreur lors de l'ajout de l'ami"; ?>
+                <?php break;?>
+            <?php case "verifAmi": ?>
+                <?php echo "Vous êtes déjà ami avec cet utilisateur"; ?>
                 <?php break;?>
         <?php 
         }
@@ -158,10 +187,17 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
         $utilisateurs = $application->getUtilisateurs();
         foreach($utilisateurs as $utilisateur)
         {
+            if($utilisateur["idRole"] != 3 && $utilisateur["pseudo"] != $_SESSION["pseudo"])
+            {
             ?>
             <div class="col-4 col-sm-4 col-md-3 col-lg-2 mb-4 mr-4">
                 <li class="list-group-item py-0" style="border: none;">
-                    <img src="<?=$utilisateur["avatar"];?>" class="rounded-circle avatarProfil">
+                    <div class="show-image">
+                        <img src="<?=$utilisateur["avatar"];?>" class="rounded-circle avatarProfil">
+                        <a href="../traitements/ajoutAmi.php?id=<?=$utilisateur["idUtilisateur"];?>">
+                        <input class="btn btn-outline-success ajouterAmi" type="button" value="Ajouter ami">
+                        </a>
+                    </div>
                 </li>
             </div>
             
@@ -170,7 +206,7 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
                 <li class="list-group-item">Points : <?=$utilisateur["pointsUtilisateur"]?></li>
                 <li class="list-group-item">Rôle : 
                 <?php 
-                if($utilisateur["idRole"]==1) { echo "Membre"; } else { echo "Administrateur"; } 
+                if($utilisateur["idRole"]==1) { echo "Membre"; } else { echo "Administrateur"; }
                 ?>
                 </li>
             </div>
@@ -178,11 +214,12 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
             <div class="float-right mb-4">
                 <a href="modifierUtilisateur.php?id=<?=$utilisateur["idUtilisateur"];?>" class="btn btn-outline-primary w-100 py-4 h-50" id="bouton">Modifier</a>
                 <br>
-                <a href="bannirUtilisateur.php?id=<?=$utilisateur["idUtilisateur"];?>" class="btn btn-outline-danger w-100 py-4 h-50" id="bouton">Bannir</a>
+                <a href="../traitements/bannirUtilisateur.php?id=<?=$utilisateur["idUtilisateur"];?>&action=1" onclick="return confirm('Êtes vous certain de vouloir bannir <?=$utilisateur['pseudo'];?> ?');" 
+                class="btn btn-outline-danger w-100 py-4 h-50" id="bouton">Bannir</a>
             </div>
 
-            
             <?php
+            }
         }
         ?>  
     </div>

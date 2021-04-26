@@ -15,7 +15,8 @@ class Utilisateur extends Modele
 
     public function __construct($idU =null)
     {
-        if($idU!=null){
+        if($idU!=null)
+        {
             $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs LEFT JOIN reponses_questionssecretes USING(idUtilisateur) LEFT JOIN questionssecretes USING(idQuestion) WHERE idUtilisateur = ?");
             $requete->execute([$idU]);
             $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
@@ -75,6 +76,18 @@ class Utilisateur extends Modele
         $this->mdp=$mdp;
     }
 
+    public function modifierUtilisateur($email, $pseudo, $idRole, $idUtilisateur)
+    {
+        $requete = getBDD()->prepare("UPDATE utilisateurs SET email = ?, pseudo = ?, idRole = ?WHERE idUtilisateur = ?");
+        $requete->execute([$email, $pseudo, $idRole, $idUtilisateur]);
+        return true;
+
+        $this->email=$email;
+        $this->pseudo=$pseudo;
+        $this->idRole=$idRole;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+
     public function ajouterReponseQuestionSecrete($idUtilisateur, $idQuestion, $reponse)
     {
         $requete = $this->getBDD()->prepare("INSERT INTO reponses_questionssecretes(idUtilisateur, idQuestion, reponse) VALUES(?, ?, ?)");
@@ -115,6 +128,76 @@ class Utilisateur extends Modele
         $requete->execute([$idRole]);
         return $requete->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function bannirUtilisateur($idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET idRole = 3 WHERE idUtilisateur = ?");
+        $requete->execute([$idUtilisateur]);
+        return true;
+    }
+
+    public function debannirUtilisateur($idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET idRole = 1 WHERE idUtilisateur = ?");
+        $requete->execute([$idUtilisateur]);
+        return true;
+    }
+
+    /*
+    // Verifie si une amitié entre 2 utilisateurs existe
+    // A OPTIMISER
+    public function verifAmitie($idUtilisateur1, $idUtilisateur2)
+    {
+        $verif = 0;
+        $associations = $this->getBDD()->prepare("SELECT idUtilisateur2 FROM amis WHERE idUtilisateur1 = ?");
+        $associations->execute([$idUtilisateur1]);
+        $associations->fetch(PDO::FETCH_ASSOC);
+        foreach($associations as $association)
+        {
+            if($association["idUtilisateur2"] == $idUtilisateur2)
+            { $verif++; } 
+        }
+
+        $associations = $this->getBDD()->prepare("SELECT idUtilisateur1 FROM amis WHERE idUtilisateur2 = ?");
+        $associations->execute([$idUtilisateur1]);
+        $associations->fetch(PDO::FETCH_ASSOC);
+        foreach($associations as $association)
+        {
+            if($association["idUtilisateur1"] == $idUtilisateur2)
+            { $verif++; }
+        }
+        if($verif == 0)
+        { return true; } else { return false; }
+        
+    }*/
+
+    public function ajoutAmi($idUtilisateur1, $idUtilisateur2)
+    {
+        $requete = $this->getBDD()->prepare("INSERT INTO amis(idUtilisateur1, idUtilisateur2) VALUES(?, ?)");
+        $requete->execute([$idUtilisateur1, $idUtilisateur2]);
+        return true;
+
+        $this->idUtilisateur1=$idUtilisateur1;
+        $this->idUtilisateur2=$idUtilisateur2;
+    }
+    
+    
+
+    /*
+    public function barreDeRecherche($pseudo)
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM utilisateurs ORDER BY idUtilisateur DESC");
+        if(!empty($_GET['q'])) 
+        {
+            $q = htmlspecialchars($_GET['q']);
+            $requete = $this->getBDD()->prepare("SELECT * FROM utilisateurs WHERE pseudo LIKE "%'.$q.'%" ORDER BY idUtilisateur DESC");
+            if($requete->rowCount() == 0) 
+            {
+                $requete = $this->getBDD()->prepare('SELECT * FROM utilisateurs WHERE CONCAT(pseudo) LIKE "%'.$q.'%" ORDER BY idUtilisateur DESC');
+            }
+        }
+    }
+    */
 
     public function getIdUtilisateur()
     {

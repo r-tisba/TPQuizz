@@ -13,7 +13,7 @@ require_once "../Modele/Reponse.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz'ine</title>
+    <title>Quiz'Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../styleQuiz.css">
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
@@ -23,7 +23,7 @@ require_once "../Modele/Reponse.php";
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
   <a class="navbar-brand" href="index.php">
     <img src="../images/design/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    Quiz'ine
+    Quiz'Up
   </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

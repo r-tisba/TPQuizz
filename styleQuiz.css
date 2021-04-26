@@ -99,3 +99,33 @@ a:hover {
   width: 9rem;
   height: 9rem;
 }
+
+/* ------------------------------------- Bouton ajout ami ------------------------------------- */
+div.show-image 
+{
+  position: relative;
+  float:left;
+  margin:5px;
+  text-align:center;
+}
+
+div.show-image:hover img
+{
+  opacity:0.5;
+}
+
+div.show-image:hover input 
+{
+  display: block;
+}
+
+div.show-image input 
+{
+  display:none;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

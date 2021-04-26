@@ -1,7 +1,6 @@
 <footer class="text-muted py-5">
   <div class="d-flex justify-content-center">
     <p class="float-end mb-1">
-      <a href="index.php">Retour en haut de la page</a>
       <br>
       &copy; Quiz'ine, est une création de Raphaël TISBA & Théodore CAVAILLE COLL
     </p>

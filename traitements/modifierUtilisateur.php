@@ -1,30 +1,36 @@
 <?php
 require_once "../modeles/modele.php";
 require_once "../Modele/Modele.php";
-require_once "../Modele/Categorie.php";
+require_once "../Modele/Utilisateur.php";
 
-$categorie = new Categorie();
+$utilisateur = new Utilisateur();
 
 if (!empty($_GET["id"])) 
 {
-    $idCategorie = $_GET["id"];
-    if(!empty($_POST["nomCategorie"]))
+    $idUtilisateur = $_GET["id"];
+    if(!empty($_POST["email"]))
     {
-        if(!empty($_POST["illustration"]))
+        if(!empty($_POST["pseudo"]))
         {
-            extract($_POST);
-            if($categorie->modifierCategorie($idCategorie, $nomCategorie, $illustration) == true)
+            if(!empty($_POST["idRole"]))
             {
-                header("location:../admin/modifierCategorie.php?success=modification&id=$idCategorie");
+
+                extract($_POST);
+                if($utilisateur->modifierUtilisateur($email, $pseudo, $idRole, $idUtilisateur) == true)
+                {
+                    header("location:../admin/modifierUtilisateur.php?success=modification&id=$idUtilisateur");
+                } else {
+                    header("location:../admin/modifierUtilisateur.php?error=fonction&id=$idUtilisateur");
+                }
             } else {
-                header("location:../admin/modifierCategorie.php?error=fonction&id=$idCategorie");
+                header("location:../admin/modifierUtilisateur.php?error=idRole&id=$idUtilisateur");
             }
         } else {
-            header("location:../admin/modifierCategorie.php?error=illustration&id=$idCategorie");
+            header("location:../admin/modifierUtilisateur.php?error=pseudo&id=$idUtilisateur");
         }
     } else {
-        header("location:../admin/modifierCategorie.php?error=nomCategorie&id=$idCategorie");
+        header("location:../admin/modifierUtilisateur.php?error=email&id=$idUtilisateur");
     }
 } else {
-    header("location:../admin/modifierCategorie.php?error=missing&id=$idCategorie");
+    header("location:../admin/modifierUtilisateur.php?error=missing&id=$idUtilisateur");
 }

@@ -33,6 +33,7 @@ class Question extends Modele
 
         }
     }
+
     /*
     $Quiz = new Quiz(1)
     echo $Quiz->getQuestions()[0]->getReponses()[3]
