@@ -59,11 +59,11 @@ class Quiz extends Modele
     }
     public function getQuestion()
     {
-        return $this->Question;
+        return $this->questions;
     }
     public function getIdQuestion()
     {
-        return $this->idQuestion;
+        return $this->questions;
     }
     public function getIdCat()
     {

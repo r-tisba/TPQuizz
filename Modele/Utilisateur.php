@@ -180,6 +180,33 @@ class Utilisateur extends Modele
         $this->idUtilisateur1=$idUtilisateur1;
         $this->idUtilisateur2=$idUtilisateur2;
     }
+   
+    public function Amis()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM amis");
+        $requete->execute();
+        $amis=$requete->fetchAll(PDO::FETCH_ASSOC);
+        return $amis;
+
+    }
+    public function filtreAmis($idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM amis LEFT JOIN utilisateurs ON utilisateurs.idUtilisateur=amis.idUtilisateur1 WHERE utilisateurs.idUtilisateur=?");
+        $requete->execute([$idUtilisateur]);
+        $amis=$requete->fetch(PDO::FETCH_ASSOC);
+        return $amis;
+        $this->idUtilisateur=$idUtilisateur;
+
+    }
+    public function suprAmi($idUtilisateur1, $idUtilisateur2)
+    {
+        $requete = $this->getBDD()->prepare("DELETE FROM amis WHERE idUtilisateur1=? AND idUtilisateur2=?");
+        $requete->execute([$idUtilisateur1, $idUtilisateur2]);
+        return true;
+        $this->idUtilisateur1=$idUtilisateur1;
+        $this->idUtilisateur2=$idUtilisateur2;
+
+    }
     
     
 

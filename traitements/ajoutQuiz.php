@@ -7,10 +7,10 @@ require_once "../Modele/Categorie.php";
 require_once "../Modele/Question.php";
 require_once "../Modele/Reponse.php";
 session_start();
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
-// exit;
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+exit;
 $illustration;
 if (empty($_POST["illustration"]))
 {
