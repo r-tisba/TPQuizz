@@ -122,6 +122,13 @@ class Utilisateur extends Modele
         return $requete->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function recupererPseudoViaId($idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("SELECT pseudo FROM utilisateurs WHERE idUtilisateur = ?");
+        $requete->execute([$idUtilisateur]);
+        return $requete->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function recupererNomRoleViaIdRole($idRole)
     {
         $requete = $this->getBDD()->prepare("SELECT nomRole FROM utilisateurs LEFT JOIN roles USING(idRole) WHERE idRole = ?");

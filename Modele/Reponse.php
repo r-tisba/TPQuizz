@@ -28,6 +28,20 @@ class Reponse extends Modele
         $this->validite = $validite;
     }
 
+    public function addR($reponse, $validite, $idQuestion)
+    {
+        $requete=$this->getBDD()->prepare("INSERT INTO reponses(reponse, validite, idQuestion) VALUES(?, ?, ?)");
+        $requete->execute([$reponse, $validite, $idQuestion]);
+        $this->idQuestion=$idQuestion;
+        $this->reponses=$reponse;
+        $this->validite=$validite;
+        return true;
+    }
+
+    public function getIdReponse()
+    {
+        return $this->idReponse;
+    }
     public function getReponse()
     {
         return $this->reponse;
@@ -49,14 +63,5 @@ class Reponse extends Modele
     public function setIdReponse($newIdReponse)
     {
         $this->validite = $newIdReponse;
-    }
-    public function addR($reponse, $validite, $idQuestion)
-    {
-        $requete=$this->getBDD()->prepare("INSERT INTO reponses(reponse, validite, idQuestion) VALUES(?, ?, ?)");
-        $requete->execute([$reponse, $validite, $idQuestion]);
-        $this->idQuestion=$idQuestion;
-        $this->reponses=$reponse;
-        $this->validite=$validite;
-        return true;
     }
 }

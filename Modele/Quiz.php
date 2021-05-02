@@ -39,8 +39,8 @@ class Quiz extends Modele
 
     
     public function addQuiz($nomQuiz, $idUtilisateur, $idCategorie, $illustration){
-        $requete=$this->getBDD()->prepare("INSERT INTO quiz(nomQuiz, idUtilisateur, idCategorie, illustration) VALUES(?,?,?,?)");
-        $requete->execute([$nomQuiz, $idUtilisateur, $idCategorie, $illustration]); 
+        $requete=$this->getBDD()->prepare("INSERT INTO quiz(nomQuiz, idUtilisateur, idCategorie, illustration, dateCreation) VALUES(?, ?, ?, ?, ?)");
+        $requete->execute([$nomQuiz, $idUtilisateur, $idCategorie, $illustration, date("Y-m-d H:i:s")]); 
         
         $this->nomQuiz  = $nomQuiz;
         $this->idUtilisateur  = $idUtilisateur;
@@ -53,13 +53,34 @@ class Quiz extends Modele
 
     }
 
+    // A FINIR
+    public function supprimerQuiz($idQuiz)
+    {
+        $requete = $this->getBDD()->prepare("DELETE FROM reponses INNER JOIN questions USING(idQuestion) WHERE idQuiz = ?");
+        $requete->execute([$idQuiz]);
+        
+        $requete = $this->getBDD()->prepare("DELETE FROM questions WHERE idQuiz = ?");
+        $requete->execute([$idQuiz]);
+
+        $requete = $this->getBDD()->prepare("DELETE FROM quiz WHERE idQuiz = ?");
+        $requete->execute([$idQuiz]);
+
+        return true;
+    
+        $this->idQuiz=$idQuiz;
+    }
+
+    public function getIdQuiz()
+    {
+       return $this->idQuiz;
+    }
     public function getNomQuiz()
     {
        return $this->nomQuiz;
     }
-    public function getQuestion()
+    public function getQuestions()
     {
-        return $this->Question;
+        return $this->questions;
     }
     public function getIdQuestion()
     {
@@ -68,5 +89,13 @@ class Quiz extends Modele
     public function getIdCat()
     {
         return $this->categorie;
+    }
+    public function getIdUtilisateur()
+    {
+        return $this->idUtilisateur;
+    }
+    public function getIllustration()
+    {
+        return $this->illustration;
     }
 }

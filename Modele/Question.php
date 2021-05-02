@@ -57,8 +57,19 @@ class Question extends Modele
         }
     }
 
-    
-    
+    public function addQ($question, $idQuiz)
+    {
+        $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
+        $requete->execute([$question, $idQuiz]);
+        $this->questions=$question;
+        $this->idQuiz=$idQuiz;
+        $requete=$this->getBDD()->prepare("SELECT MAX(idQuestion) AS ID_Question FROM questions");
+        $requete->execute();
+        $idQuestion=$requete->fetch(PDO::FETCH_ASSOC);
+        return $idQuestion["ID_Question"];
+
+    }
+
     public function removeReponse($idReponse)
     {
         $requete=$this->getBdd()->prepare("DELETE * FROM reponses WHERE idReponse=?");
@@ -66,6 +77,19 @@ class Question extends Modele
         $this->reponses=$idReponse;
     }
 
+    public function recupererQuestionsQuiz($idQuiz)
+    {
+        $requete = $this->getBdd()->prepare("SELECT * FROM questions WHERE idQuiz = ?");
+        $requete->execute([$idQuiz]);
+        $questions=$requete->fetch(PDO::FETCH_ASSOC);
+
+        $this->questions = $questions;
+    }
+
+    public function getIdQuestion()
+    {
+        return $this->idQuestion;
+    }
     public function getQuestion()
     {
         return $this->question;
@@ -91,17 +115,5 @@ class Question extends Modele
     {
         $this->validite = $newValidite;
     } 
-    public function addQ($question, $idQuiz)
-    {
-        $requete=$this->getBDD()->prepare("INSERT INTO questions(question, idQuiz) VALUES(?,?)");
-        $requete->execute([$question, $idQuiz]);
-        $this->questions=$question;
-        $this->idQuiz=$idQuiz;
-        $requete=$this->getBDD()->prepare("SELECT MAX(idQuestion) AS ID_Question FROM questions");
-        $requete->execute();
-        $idQuestion=$requete->fetch(PDO::FETCH_ASSOC);
-        return $idQuestion["ID_Question"];
-
-    }
 }
 

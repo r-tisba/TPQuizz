@@ -7,7 +7,8 @@ class Application extends Modele
     public $categories = [];
     public $quizs = [];
     public $roles = [];
-    public $questions = [];
+    public $questionsSecretes = [];
+    // public $questions = [];
 
     public function __construct()
     {
@@ -25,9 +26,9 @@ class Application extends Modele
 
         $requete = $this->getBdd()->prepare("SELECT * FROM questionssecretes");
         $requete->execute();
-        $questions=$requete->fetchAll(PDO::FETCH_ASSOC);
+        $questionsSecretes=$requete->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->questions = $questions;
+        $this->questionsSecretes = $questionsSecretes;
 
         $requete = $this->getBdd()->prepare("SELECT * FROM categories");
         $requete->execute();
@@ -40,7 +41,27 @@ class Application extends Modele
         $quizs=$requete->fetchAll(PDO::FETCH_ASSOC);
 
         $this->quizs = $quizs;
+
+        /*
+        $requete = $this->getBdd()->prepare("SELECT * FROM questions");
+        $requete->execute();
+        $questions=$requete->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->questions = $questions;
+        */
     }
+
+    function dateFr($date)
+{
+    if($datetime = DateTime::createfromformat("Y-m-d H:i:s", $date))
+    {
+        return $date = $datetime->format("d/m/Y à H:i");
+        
+    } else if($datetime = DateTime::createfromformat("Y-m-d", $date))
+    {
+        return $date = $datetime->format("d/m/Y");
+    }
+}
 
     public function getUtilisateurs()
     {
@@ -54,7 +75,7 @@ class Application extends Modele
 
     public function getQuestionsSecretes()
     {
-        return $this->questions;
+        return $this->questionsSecretes;
     }
 
     public function getCategories()
@@ -66,5 +87,12 @@ class Application extends Modele
     {
         return $this->quizs;
     }
+
+    /*
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+    */
 
 }
