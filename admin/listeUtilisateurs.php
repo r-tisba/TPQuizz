@@ -1,7 +1,9 @@
 <?php
 require_once "../admin/entete.php";
-$utilisateur = new Utilisateur($_SESSION["pseudo"]);
+$user = new Utilisateur($_SESSION["pseudo"]);
 $application = new Application();
+$amis = $user->filtreAmis($_SESSION["idUtilisateur"]);
+print_r($amis);
 ?>
 
 <div class="mb-4">
@@ -194,9 +196,18 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
                 <li class="list-group-item py-0" style="border: none;">
                     <div class="show-image">
                         <img src="<?=$utilisateur["avatar"];?>" class="rounded-circle avatarProfil">
+                        <?php
+                        
+                        // foreach($amis as $ami){
+                        // if($ami["idUtilisateur1"]!==$_SESSION["idUtilisateur"] && $ami["idUtilisateur2"]!==$utilisateur["idUtilisateur"]){
+                        // ?>
                         <a href="../traitements/ajoutAmi.php?id=<?=$utilisateur["idUtilisateur"];?>">
                         <input class="btn btn-outline-success ajouterAmi" type="button" value="Ajouter ami">
                         </a>
+                        <?php
+                        // }
+                        // }
+                        ?>
                     </div>
                 </li>
             </div>

@@ -1,12 +1,16 @@
 <?php
-session_start();
+
 require_once "../Modele/Modele.php";
 require_once "../Modele/Utilisateur.php";
 $utilisateur = new Utilisateur();
-
+session_start();
 $idUtilisateur = $_SESSION["idUtilisateur"];
-
-
+$idUtilisateurCible = $_GET["id"];
+echo "<pre>";
+print_r($idUtilisateur);
+print_r($idUtilisateurCible);
+echo "</pre>";
+// exit;
 
 if (!empty($_GET["id"])) 
 {

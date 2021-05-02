@@ -7,8 +7,8 @@ require_once "../Modele/Categorie.php";
 require_once "../Modele/Question.php";
 require_once "../Modele/Reponse.php";
 session_start();
-
 $illustration;
+
 if (empty($_POST["illustration"]))
 {
     $illustration = "../images/design/illustrationQuizDefaut.jpg";
