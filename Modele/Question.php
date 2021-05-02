@@ -102,6 +102,10 @@ class Question extends Modele
     {
         return $this->validite;
     }
+    public function getIdQuiz()
+    {
+        return $this->idQuiz;
+    }
 
     public function setQuestion($newQuestion)
     {

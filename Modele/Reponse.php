@@ -50,6 +50,10 @@ class Reponse extends Modele
     {
         return $this->validite;
     }
+    public function getIdQuestion()
+    {
+        return $this->idQuestion;
+    }
 
     public function setReponse($newReponse)
     {

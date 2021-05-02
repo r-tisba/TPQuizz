@@ -42,6 +42,12 @@ class Application extends Modele
 
         $this->quizs = $quizs;
 
+        $requete = $this->getBDD()->prepare("SELECT * FROM amis");
+        $requete->execute();
+        $amis=$requete->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->amis = $amis;
+    
         /*
         $requete = $this->getBdd()->prepare("SELECT * FROM questions");
         $requete->execute();
@@ -86,6 +92,11 @@ class Application extends Modele
     public function getQuizs()
     {
         return $this->quizs;
+    }
+
+    public function getAmis()
+    {
+        return $this->amis;
     }
 
     /*

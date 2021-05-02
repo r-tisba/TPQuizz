@@ -1,9 +1,9 @@
 <?php
 require_once "../admin/entete.php";
-$user = new Utilisateur($_SESSION["pseudo"]);
+$utilisateur = new Utilisateur($_SESSION["pseudo"]);
 $application = new Application();
-$amis = $user->filtreAmis($_SESSION["idUtilisateur"]);
-print_r($amis);
+$amis = $utilisateur->filtreAmis($_SESSION["idUtilisateur"]);
+
 ?>
 
 <div class="mb-4">
