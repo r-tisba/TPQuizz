@@ -29,6 +29,9 @@ print_r($idUtilisateur);
                         <li class="list-group-item py-0" style="border: none;">
                             <div class="show-image">
                                 <img src="<?=$utilisateur["avatar"];?>" class="rounded-circle avatarProfil">
+                                <a href="../traitements/supprimerAmi.php?id=<?=$utilisateur["idUtilisateur"];?>&action=1" onclick="return confirm('Êtes vous certain de vouloir suprimer <?=$utilisateur['pseudo'];?> de vos amis?');">
+                        <input class="btn btn-outline-danger ajouterAmi" type="button" value="Supprimer ami">
+                        </a>
                             </div>
                         </li>
                     </div>
@@ -43,10 +46,10 @@ print_r($idUtilisateur);
                         </li>
                     </div>
             
-                    <div class="float-right mb-4">
+                    <!-- <div class="float-right mb-4">
                         <a href="../traitements/supprimerAmi.php?id=<?=$utilisateur["idUtilisateur"];?>&action=1" onclick="return confirm('Êtes vous certain de vouloir suprimer <?=$utilisateur['pseudo'];?> de vos amis?');" 
                         class="btn btn-outline-danger w-100 py-4 h-50" id="bouton">Supprimer</a>
-                    </div>
+                    </div> -->
 
                     <?php
                 }

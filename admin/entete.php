@@ -46,6 +46,9 @@ require_once "../Modele/Reponse.php";
         <li class="nav-item">
           <a class="nav-item nav-link" href="listeAmis.php">Amis</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="profil.php">Mon profil</a>
+        </li>
         <?php  
         }
         ?>

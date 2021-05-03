@@ -87,6 +87,42 @@ class Utilisateur extends Modele
         $this->idRole=$idRole;
         $this->idUtilisateur=$idUtilisateur;
     }
+    public function modifierAvatar($avatar, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET avatar = ? WHERE idUtilisateur = ?");
+        $requete->execute([$avatar, $idUtilisateur]);
+        return true;
+
+        $this->avatar=$avatar;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+    public function modifierPseudo($pseudo, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET pseudo = ? WHERE idUtilisateur = ?");
+        $requete->execute([$pseudo, $idUtilisateur]);
+        return true;
+
+        $this->pseudo=$pseudo;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+    public function modifierEmail($email, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET email = ? WHERE idUtilisateur = ?");
+        $requete->execute([$email, $idUtilisateur]);
+        return true;
+
+        $this->email=$email;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+    public function modifierMdp($mdp, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET mdp = ? WHERE idUtilisateur = ?");
+        $requete->execute([$mdp, $idUtilisateur]);
+        return true;
+
+        $this->email=$mdp;
+        $this->idUtilisateur=$idUtilisateur;
+    }
 
     public function ajouterReponseQuestionSecrete($idUtilisateur, $idQuestion, $reponse)
     {
@@ -190,11 +226,13 @@ class Utilisateur extends Modele
    
     public function filtreAmis($idUtilisateur)
     {
-        $requete = $this->getBDD()->prepare("SELECT * FROM amis LEFT JOIN utilisateurs ON utilisateurs.idUtilisateur = amis.idUtilisateur1 WHERE utilisateurs.idUtilisateur = ?");
+        $requete = $this->getBDD()->prepare("SELECT * FROM amis LEFT JOIN utilisateurs ON utilisateurs.idUtilisateur=idUtilisateur1 OR 
+        utilisateurs.idUtilisateur=idUtilisateur2 WHERE utilisateurs.idUtilisateur=?");
         $requete->execute([$idUtilisateur]);
-        $amis = $requete->fetch(PDO::FETCH_ASSOC);
-        return $amis;
+        $amis = $requete->fetchAll(PDO::FETCH_ASSOC);
         $this->idUtilisateur = $idUtilisateur;
+        return $amis;
+        
 
     }
     public function supprimerAmi($idUtilisateur1, $idUtilisateur2)
