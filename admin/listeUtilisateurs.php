@@ -200,7 +200,7 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
                         
                         // foreach($amis as $ami){
                         // if($ami["idUtilisateur1"]!==$_SESSION["idUtilisateur"] && $ami["idUtilisateur2"]!==$utilisateur["idUtilisateur"]){
-                        // ?>
+                        ?>
                         <a href="../traitements/ajoutAmi.php?id=<?=$utilisateur["idUtilisateur"];?>">
                         <input class="btn btn-outline-success ajouterAmi" type="button" value="Ajouter ami">
                         </a>
