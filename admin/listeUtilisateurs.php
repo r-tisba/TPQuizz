@@ -1,6 +1,6 @@
 <?php
 require_once "../admin/entete.php";
-$utilisateur = new Utilisateur($_SESSION["pseudo"]);
+$utilisateur = new Utilisateur($_SESSION["idUtilisateur"]);
 $application = new Application();
 $amis = $utilisateur->filtreAmis($_SESSION["idUtilisateur"]);
 

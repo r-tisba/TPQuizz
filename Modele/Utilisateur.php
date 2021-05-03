@@ -175,8 +175,8 @@ class Utilisateur extends Modele
         }
         if($verif == 0)
         { return true; } else { return false; }
-        
-    }*/
+    }
+    */
 
     public function ajoutAmi($idUtilisateur1, $idUtilisateur2)
     {
@@ -206,8 +206,6 @@ class Utilisateur extends Modele
         $this->idUtilisateur2 = $idUtilisateur2;
 
     }
-    
-    
 
     /*
     public function barreDeRecherche($pseudo)

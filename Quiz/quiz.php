@@ -34,4 +34,4 @@ foreach($questions as $question)
     }
 }
 
-?>
+require_once "../admin/pied.php";
