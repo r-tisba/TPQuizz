@@ -1,9 +1,12 @@
 <?php
 require_once "../admin/entete.php";
-$user = new Utilisateur($_SESSION["pseudo"]);
+$user = new Utilisateur($_SESSION["idUtilisateur"]);
 $application = new Application();
-$amis = $user->filtreAmis($_SESSION["idUtilisateur"]);
-print_r($amis);
+echo $_SESSION["idUtilisateur"];
+
+
+// exit;
+
 ?>
 
 <div class="mb-4">
@@ -185,29 +188,48 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
 <div class="container-fluid content-row px-0">
     <div class="row">
         <?php
-
+        $amis = $user->filtreAmis($_SESSION["idUtilisateur"]);
         $utilisateurs = $application->getUtilisateurs();
         foreach($utilisateurs as $utilisateur)
         {
+            
             if($utilisateur["idRole"] != 3 && $utilisateur["pseudo"] != $_SESSION["pseudo"])
             {
+                
+                        // echo "<pre>";
+                        // print_r($amis);
+                        // echo "</pre>";
             ?>
             <div class="col-4 col-sm-4 col-md-3 col-lg-2 mb-4 mr-4">
                 <li class="list-group-item py-0" style="border: none;">
                     <div class="show-image">
                         <img src="<?=$utilisateur["avatar"];?>" class="rounded-circle avatarProfil">
                         <?php
+
+                        $nbAmis=0;
+
+                        foreach($amis as $ami)
+                        {
+                            // echo "<pre>";
+                            // print_r($ami);
+                            // echo "</pre>";
+                            // echo "<br/>";
+                            // exit;
+                            if($ami["idUtilisateur1"]== $utilisateur["idUtilisateur"] || $ami["idUtilisateur2"]== $utilisateur["idUtilisateur"])
+                            {           
+                                $nbAmis++;
+                            
+                            }
                         
-                        // foreach($amis as $ami){
-                        // if($ami["idUtilisateur1"]!==$_SESSION["idUtilisateur"] && $ami["idUtilisateur2"]!==$utilisateur["idUtilisateur"]){
-                        ?>
-                        <a href="../traitements/ajoutAmi.php?id=<?=$utilisateur["idUtilisateur"];?>">
-                        <input class="btn btn-outline-success ajouterAmi" type="button" value="Ajouter ami">
-                        </a>
-                        <?php
-                        // }
-                        // }
-                        ?>
+                            }
+                            if($nbAmis==0){
+                                ?>
+                                <a href="../traitements/ajoutAmi.php?id=<?=$utilisateur["idUtilisateur"];?>">
+                                    <input class="btn btn-outline-success ajouterAmi" type="button" value="Ajouter ami">
+                                    </a>
+                                    <?php
+                            }
+                            ?>
                     </div>
                 </li>
             </div>

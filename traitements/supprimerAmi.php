@@ -10,7 +10,7 @@ if($_SESSION["idUtilisateur"]){
     {
         $idUtilisateur2 = $_GET["id"];
 
-        if($utilisateur->suprAmi($idUtilisateur1, $idUtilisateur2) == true)
+        if($utilisateur->supprimerAmi($idUtilisateur1, $idUtilisateur2) == true)
         {
             header("location:../admin/listeAmis.php?success=suppression");
         } else {

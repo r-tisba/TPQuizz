@@ -13,7 +13,7 @@ class Utilisateur extends Modele
     private $reponse;
 
 
-    public function __construct($idU =null)
+    public function __construct($idU = null)
     {
         if($idU!=null)
         {
@@ -78,13 +78,49 @@ class Utilisateur extends Modele
 
     public function modifierUtilisateur($email, $pseudo, $idRole, $idUtilisateur)
     {
-        $requete = getBDD()->prepare("UPDATE utilisateurs SET email = ?, pseudo = ?, idRole = ?WHERE idUtilisateur = ?");
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET email = ?, pseudo = ?, idRole = ?WHERE idUtilisateur = ?");
         $requete->execute([$email, $pseudo, $idRole, $idUtilisateur]);
         return true;
 
         $this->email=$email;
         $this->pseudo=$pseudo;
         $this->idRole=$idRole;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+    public function modifierAvatar($avatar, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET avatar = ? WHERE idUtilisateur = ?");
+        $requete->execute([$avatar, $idUtilisateur]);
+        return true;
+
+        $this->avatar=$avatar;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+    public function modifierPseudo($pseudo, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET pseudo = ? WHERE idUtilisateur = ?");
+        $requete->execute([$pseudo, $idUtilisateur]);
+        return true;
+
+        $this->pseudo=$pseudo;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+    public function modifierEmail($email, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET email = ? WHERE idUtilisateur = ?");
+        $requete->execute([$email, $idUtilisateur]);
+        return true;
+
+        $this->email=$email;
+        $this->idUtilisateur=$idUtilisateur;
+    }
+    public function modifierMdp($mdp, $idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE utilisateurs SET mdp = ? WHERE idUtilisateur = ?");
+        $requete->execute([$mdp, $idUtilisateur]);
+        return true;
+
+        $this->email=$mdp;
         $this->idUtilisateur=$idUtilisateur;
     }
 
@@ -119,6 +155,13 @@ class Utilisateur extends Modele
     {
         $requete = $this->getBDD()->prepare("SELECT idUtilisateur FROM utilisateurs WHERE pseudo = ?");
         $requete->execute([$pseudo]);
+        return $requete->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function recupererPseudoViaId($idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("SELECT pseudo FROM utilisateurs WHERE idUtilisateur = ?");
+        $requete->execute([$idUtilisateur]);
         return $requete->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -177,34 +220,28 @@ class Utilisateur extends Modele
         $requete->execute([$idUtilisateur1, $idUtilisateur2]);
         return true;
 
-        $this->idUtilisateur1=$idUtilisateur1;
-        $this->idUtilisateur2=$idUtilisateur2;
+        $this->idUtilisateur1 = $idUtilisateur1;
+        $this->idUtilisateur2 = $idUtilisateur2;
     }
    
-    public function Amis()
-    {
-        $requete = $this->getBDD()->prepare("SELECT * FROM amis");
-        $requete->execute();
-        $amis=$requete->fetchAll(PDO::FETCH_ASSOC);
-        return $amis;
-
-    }
     public function filtreAmis($idUtilisateur)
     {
-        $requete = $this->getBDD()->prepare("SELECT * FROM amis LEFT JOIN utilisateurs ON utilisateurs.idUtilisateur=amis.idUtilisateur1 WHERE utilisateurs.idUtilisateur=?");
+        $requete = $this->getBDD()->prepare("SELECT * FROM amis LEFT JOIN utilisateurs ON utilisateurs.idUtilisateur=idUtilisateur1 OR 
+        utilisateurs.idUtilisateur=idUtilisateur2 WHERE utilisateurs.idUtilisateur=?");
         $requete->execute([$idUtilisateur]);
-        $amis=$requete->fetch(PDO::FETCH_ASSOC);
+        $amis = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $this->idUtilisateur = $idUtilisateur;
         return $amis;
-        $this->idUtilisateur=$idUtilisateur;
+        
 
     }
-    public function suprAmi($idUtilisateur1, $idUtilisateur2)
+    public function supprimerAmi($idUtilisateur1, $idUtilisateur2)
     {
-        $requete = $this->getBDD()->prepare("DELETE FROM amis WHERE idUtilisateur1=? AND idUtilisateur2=?");
+        $requete = $this->getBDD()->prepare("DELETE FROM amis WHERE idUtilisateur1 = ? AND idUtilisateur2 = ?");
         $requete->execute([$idUtilisateur1, $idUtilisateur2]);
         return true;
-        $this->idUtilisateur1=$idUtilisateur1;
-        $this->idUtilisateur2=$idUtilisateur2;
+        $this->idUtilisateur1 = $idUtilisateur1;
+        $this->idUtilisateur2 = $idUtilisateur2;
 
     }
     

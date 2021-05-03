@@ -1,6 +1,5 @@
 <?php
 require_once "../admin/entete.php";
-require_once "../modeles/modele.php";
 require_once "../Modele/Modele.php";
 require_once "../Modele/Utilisateur.php";
 $application = new Application();

@@ -2,6 +2,8 @@
 require_once "../visiteur/entete.php";
 require_once "../Modele/Modele.php";
 require_once "../Modele/Utilisateur.php";
+require_once "../Modele/Application.php";
+$application = new Application();
 $utilisateur = new Utilisateur();
 
 ?>
@@ -78,7 +80,7 @@ $utilisateur = new Utilisateur();
                 <label for="idQuestion">Question secrète :</label>
                 <select name="idQuestion" id="idQuestion" class="form-control">
                 <?php
-                    $questionsSecretes = recupererQuestionsSecretes();
+                    $questionsSecretes = $application->getQuestionsSecretes();
                     foreach ($questionsSecretes as $questionsSecrete)
                     {
                         ?>

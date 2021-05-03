@@ -131,7 +131,9 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
                     <div class="card-footer p-1 cardFooterCategorie">
                        <div class="form-group text-center mb-0">
                             <a href="../admin/modifierCategorie.php?id=<?=$categorie["idCategorie"];?>" class="btn btn-outline-primary my-2">Modifier</a>
-                            <a href="../admin/supprimerCategorie.php?id=<?=$categorie["idCategorie"];?>" class="btn btn-outline-danger my-2">Supprimer</a>
+
+                            <a href="../traitements/supprimerCategorie.php?id=<?=$categorie["idCategorie"];?>" onclick="return confirm('Êtes vous certain de supprimer la catégorie <?=$categorie['nomCategorie'];?> ?');" class="btn btn-outline-danger" id="bouton">Supprimer</a>
+
                        </div> 
                     </div>
                 </div>
@@ -144,3 +146,5 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
 </div>
 </main>
 
+<?php
+require_once "pied.php";

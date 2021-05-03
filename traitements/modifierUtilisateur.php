@@ -1,5 +1,4 @@
 <?php
-require_once "../modeles/modele.php";
 require_once "../Modele/Modele.php";
 require_once "../Modele/Utilisateur.php";
 

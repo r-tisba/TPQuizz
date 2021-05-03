@@ -40,7 +40,7 @@ class Categorie extends Modele
 
     public function modifierCategorie($idCategorie, $nomCategorie, $illustration)
     {
-        $requete = getBDD()->prepare("UPDATE categories SET nomCategorie = ?, illustration = ? WHERE idCategorie = ?");
+        $requete = $this->getBDD()->prepare("UPDATE categories SET nomCategorie = ?, illustration = ? WHERE idCategorie = ?");
         $requete->execute([$nomCategorie, $illustration, $idCategorie]);
         return true;
     }

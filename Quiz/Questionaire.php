@@ -1,6 +1,6 @@
 <?php
 require_once "entete.php";
-$quiz= new Quiz(1);
+$quiz= new Question();
 echo $quiz->getQuestion()[0]->getReponse()[2];
 exit;
 $questions=$quiz->getQuestion();

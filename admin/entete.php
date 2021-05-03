@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once "../modeles/modele.php";
 require_once "../Modele/Modele.php";
 require_once "../Modele/Application.php";
 require_once "../Modele/Quiz.php";
@@ -46,6 +45,9 @@ require_once "../Modele/Reponse.php";
         </li>
         <li class="nav-item">
           <a class="nav-item nav-link" href="listeAmis.php">Amis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="profil.php">Mon profil</a>
         </li>
         <?php  
         }
