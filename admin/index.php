@@ -74,13 +74,33 @@ if($_SESSION["idRole"] == 1)
         </div>
 
         <!-- CARD 4 : MEILLEURS JOUEURS -->
-        <div class="text-center col-sm-12 col-lg-6 col-md-6 mb-4">
+        <div class="text-center col-sm-12 col-lg-6 col-md-6 mb-4 ">
             <div class="card" style="border: none;">
-            <div class="card-body">
+            <div class="card-body bg-warning" style="border-radius: 10px;">
               <h5 class="card-title">Les meilleurs joueurs</h5>
               <div class="d-flex justify-content-center">
                 <div class="btn-group">
-                  
+                <ul class="list-group ">
+                  <div class="row meilleurJoueur">
+                      <?php
+                      $resultats = $utilisateur->classement();
+                      foreach($resultats as $resultat)
+                      {               
+                          ?>
+                                    
+                          <div class="col-5 col-sm-5 col-md-7 col-lg-8 mb-2">
+                              <li class="list-group-item">Pseudo : <?=$resultat["pseudo"]?></li>
+                              <li class="list-group-item">Points : <?=$resultat["pointsUtilisateur"]?></li>
+                              
+                          </div>
+                                
+
+                          <?php
+                          
+                          }
+                      ?>  
+                  </div>
+                </ul>
                 </div>
               </div>
             </div>

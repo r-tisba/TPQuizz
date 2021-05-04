@@ -223,6 +223,26 @@ class Utilisateur extends Modele
         $this->idUtilisateur2 = $idUtilisateur2;
         return true;
     }
+    public function questionSecrete($idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM reponses_questionssecretes LEFT JOIN questionssecretes USING (idQuestion) WHERE idUtilisateur=?");
+        $requete->execute([$idUtilisateur]);
+        $this->idUtilisateur = $idUtilisateur;
+        $question=$requete->fetch(PDO::FETCH_ASSOC);
+        return $question;
+
+        
+    }
+    // public function reponseSecrete($idUtilisateur, $reponse)
+    // {
+    //     $requete = $this->getBDD()->prepare("SELECT * FROM reponses_questionssecretes  WHERE idUtilisateur=?");
+    //     $requete->execute([$idUtilisateur]);
+    //     $this->idUtilisateur = $idUtilisateur;
+    //     $question=$requete->fetch(PDO::FETCH_ASSOC);
+    //     return $question;
+
+        
+    // }
    
     public function filtreAmis($idUtilisateur)
     {
@@ -232,6 +252,27 @@ class Utilisateur extends Modele
         $amis = $requete->fetchAll(PDO::FETCH_ASSOC);
         $this->idUtilisateur = $idUtilisateur;
         return $amis;
+    }
+    public function filtreUtilisateurs($pseudo)
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM utilisateurs WHERE pseudo LIKE'%$pseudo%'");
+        $requete->execute([$pseudo]);
+        $this->pseudo = $pseudo;
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultats;
+        
+
+    }
+    public function classement()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM utilisateurs ORDER BY pointsUtilisateur DESC LIMIT 5");
+        $requete->execute();
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultats;
+        
+
     }
     public function supprimerAmi($idUtilisateur1, $idUtilisateur2)
     {

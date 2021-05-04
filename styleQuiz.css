@@ -129,6 +129,10 @@ div.show-image input
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+.meilleurJoueur{
+  justify-content: center;
+  align-items: center;
+}
 
 /* ----------------------------------------- Quiz ----------------------------------------- */
 /*
