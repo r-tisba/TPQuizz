@@ -13,11 +13,12 @@ class Reponse extends Modele
         {
             $requete = $this->getBdd()->prepare("SELECT * FROM reponses WHERE idReponse = ?");
             $requete->execute([$idReponse]);
-            $LaReponse = $requete->fetch(PDO::FETCH_ASSOC);
+            $requete = $requete->fetch(PDO::FETCH_ASSOC);
 
             $this->idReponse = $idReponse;
-            $this->reponse = $LaReponse["reponse"];
-            $this->validite = $LaReponse["validite"];
+            $this->reponse = $requete["reponse"];
+            $this->validite = $requete["validite"];
+            $this->idQuestion = $requete["idQuestion"];
         }
     }
 
@@ -35,6 +36,17 @@ class Reponse extends Modele
         $this->idQuestion=$idQuestion;
         $this->reponses=$reponse;
         $this->validite=$validite;
+        return true;
+    }
+
+    public function enregistrerReponse($idUtilisateur, $idQuestion, $idReponse)
+    {
+        $requete=$this->getBDD()->prepare("INSERT INTO reponses_utilisateurs(idUtilisateur, idQuestion, idReponse) VALUES(?, ?, ?)");
+        $requete->execute([$idUtilisateur, $idQuestion, $idReponse]);
+
+        $this->idUtilisateur=$idUtilisateur;
+        $this->idQuestion=$idQuestion;
+        $this->idReponse=$idReponse;
         return true;
     }
 

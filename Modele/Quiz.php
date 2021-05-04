@@ -38,7 +38,8 @@ class Quiz extends Modele
     }
 
     
-    public function addQuiz($nomQuiz, $idUtilisateur, $idCategorie, $illustration){
+    public function addQuiz($nomQuiz, $idUtilisateur, $idCategorie, $illustration)
+    {
         $requete=$this->getBDD()->prepare("INSERT INTO quiz(nomQuiz, idUtilisateur, idCategorie, illustration, dateCreation) VALUES(?, ?, ?, ?, ?)");
         $requete->execute([$nomQuiz, $idUtilisateur, $idCategorie, $illustration, date("Y-m-d H:i:s")]); 
         
@@ -65,9 +66,8 @@ class Quiz extends Modele
         $requete = $this->getBDD()->prepare("DELETE FROM quiz WHERE idQuiz = ?");
         $requete->execute([$idQuiz]);
 
-        return true;
-    
         $this->idQuiz=$idQuiz;
+        return true;
     }
 
     public function getIdQuiz()

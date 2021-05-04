@@ -11,27 +11,12 @@ echo "<pre>";
 print_r($quiz->getQuestions());
 echo "</pre>";
 */
+?>
+<div class="container">
+    <div id="home" class="flex-column flex-center">
+        <h1>Prêt pour le quiz "<?=$quiz->getNomQuiz();?>" ?</h1>
+        <a href="../Quiz/jeu.php?id=<?=$idQuiz;?>" class="btn">Commencer le quiz</a>
+    </div>
+</div>
+<?php
 
-$questions = $quiz->getQuestions();
-$nQ = 1;
-foreach($questions as $question)
-{
-    $idQuestion = $question->getIdQuestion();
-    $objetQuestion = new Question($idQuestion);
-    $nR = 1;
-
-    echo "<br>" . "Question " . $nQ . " : " . $objetQuestion->getQuestion() . "<br>";
-    $nQ++;
-
-    $reponses = $question->getReponses();
-    foreach($reponses as $reponse)
-    {
-        $idReponse = $reponse->getIdReponse();
-        $objetReponse = new Reponse($idReponse);
-
-        echo "<br>" . "<div class='d-flex justify-content-center'>" . " Réponse " . $nR . " : " . $objetReponse->getReponse() . " </div>" . "<br>";
-        $nR++;
-    }
-}
-
-require_once "../admin/pied.php";

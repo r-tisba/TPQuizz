@@ -218,10 +218,10 @@ class Utilisateur extends Modele
     {
         $requete = $this->getBDD()->prepare("INSERT INTO amis(idUtilisateur1, idUtilisateur2) VALUES(?, ?)");
         $requete->execute([$idUtilisateur1, $idUtilisateur2]);
-        return true;
 
         $this->idUtilisateur1 = $idUtilisateur1;
         $this->idUtilisateur2 = $idUtilisateur2;
+        return true;
     }
    
     public function filtreAmis($idUtilisateur)
@@ -232,17 +232,15 @@ class Utilisateur extends Modele
         $amis = $requete->fetchAll(PDO::FETCH_ASSOC);
         $this->idUtilisateur = $idUtilisateur;
         return $amis;
-        
-
     }
     public function supprimerAmi($idUtilisateur1, $idUtilisateur2)
     {
         $requete = $this->getBDD()->prepare("DELETE FROM amis WHERE idUtilisateur1 = ? AND idUtilisateur2 = ?");
         $requete->execute([$idUtilisateur1, $idUtilisateur2]);
-        return true;
+
         $this->idUtilisateur1 = $idUtilisateur1;
         $this->idUtilisateur2 = $idUtilisateur2;
-
+        return true;
     }
 
     /*

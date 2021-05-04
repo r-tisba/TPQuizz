@@ -81,9 +81,76 @@ class Question extends Modele
     {
         $requete = $this->getBdd()->prepare("SELECT * FROM questions WHERE idQuiz = ?");
         $requete->execute([$idQuiz]);
-        $questions=$requete->fetch(PDO::FETCH_ASSOC);
+        $questions=$requete->fetchAll(PDO::FETCH_ASSOC);
 
         $this->questions = $questions;
+        return $questions;
+    }
+
+    public function verifQuestionTermine($idUtilisateur, $idQuestion)
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM reponses_utilisateurs WHERE idUtilisateur = ? AND idQuestion = ?");
+        $requete->execute([$idUtilisateur, $idQuestion]);
+        if($requete->rowCount() == 0)
+        {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
+    // EXPERIMENTAL IMBRIQUE
+    /*
+    public function recupererQuestionsNonJoues($idQuiz, $idUtilisateur, $idQuestion)
+    {
+        $requete = $this->getBdd()->prepare(
+            
+            "SELECT * FROM questions WHERE idQuiz = ? NOT IN (
+            
+            SELECT * FROM reponses_utilisateurs WHERE idUtilisateur = ? AND idQuestion = ?)");
+
+        $requete->execute([$idQuiz, $idUtilisateur, $idQuestion]);
+        $questions=$requete->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->questions = $questions;
+        return $questions;
+    }
+    */
+
+    // EXPERIMENTAL JOINTURE
+    /*
+    public function recupererQuestionsNonJoues($idQuiz, $idUtilisateur)
+    {
+        $requete = $this->getBdd()->prepare(
+            
+            "SELECT * FROM questions LEFT JOIN reponses_utilisateurs USING(idQuestion) WHERE idQuiz = ? NOT IN (
+            
+            SELECT * FROM reponses_utilisateurs WHERE idUtilisateur = ?)");
+
+        $requete->execute([$idQuiz, $idUtilisateur]);
+        $questions=$requete->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->questions = $questions;
+        return $questions;
+    }
+    */
+
+    // EXPERIMENTAL EXISTS
+
+    public function recupererQuestionsNonJoues($idQuiz, $idUtilisateur)
+    {
+        $requete = $this->getBdd()->prepare(
+            
+            "SELECT * FROM questions WHERE idQuiz = ? AND NOT EXISTS
+            (SELECT idUtilisateur, idQuestion FROM reponses_utilisateurs 
+             WHERE idQuestion IS NULL AND idUtilisateur = ?)");
+
+        $requete->execute([$idQuiz, $idUtilisateur]);
+        $questions=$requete->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->questions = $questions;
+        return $questions;
     }
 
     public function getIdQuestion()
