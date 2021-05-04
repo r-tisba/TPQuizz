@@ -14,8 +14,12 @@ echo $_SESSION["idUtilisateur"];
         <img src="../images/design/flecheRetour.png" class="fleche">Retour
     </a>
 </div>
-
-
+<form method="post" action="../admin/resultatRecherche.php">
+<div class="container bg-primary" style="width:350px; height:60px; border-radius: 10px;">
+    <input type="text" style="margin-top: 10px; border-color:transparent;" placeholder="chercher un utilisateur" aria-label="Search through site content" name="pseudo" id="pseudo">
+    <button class="float-right btn btn-secondary">Rechercher</button>
+</div>
+</form>
 <!-- ---------------------- AJOUT D'UN NOUVEAU UTILISATEUR ---------------------- -->
 <div class="container pl-0">
 
@@ -184,6 +188,7 @@ if(!empty($_SESSION["pseudo"]) && $_SESSION["idRole"] == 2 && empty($_GET["succe
 <!-- ------------------------ FIN AJOUT NOUVEAU UTILISATEUR ------------------------ -->
 
 <main>
+
 <ul class="list-group">
 <div class="container-fluid content-row px-0">
     <div class="row">

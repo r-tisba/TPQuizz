@@ -255,6 +255,27 @@ class Utilisateur extends Modele
         
 
     }
+    public function filtreUtilisateurs($pseudo)
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM utilisateurs WHERE pseudo LIKE'%$pseudo%'");
+        $requete->execute([$pseudo]);
+        $this->pseudo = $pseudo;
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultats;
+        
+
+    }
+    public function classement()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM utilisateurs ORDER BY pointsUtilisateur DESC LIMIT 5");
+        $requete->execute();
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $resultats;
+        
+
+    }
     public function supprimerAmi($idUtilisateur1, $idUtilisateur2)
     {
         $requete = $this->getBDD()->prepare("DELETE FROM amis WHERE idUtilisateur1 = ? AND idUtilisateur2 = ?");
