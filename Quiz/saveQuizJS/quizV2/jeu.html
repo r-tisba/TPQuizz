@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleQuizHTML.css">
+    <link rel="stylesheet" href="jeu.css">
+    
+    <title>Jeu</title>
+</head>
+<body>
+    <div class="container">
+        <div id="jeu" class="justify-center flex-column">
+            <div id="hud">
+                <div class="hud-item">
+                    <p id="progressText" class="hud-prefix">
+                        Question
+                    </p>
+                    <div id="progressBar">
+                        <div id="progressBarFull"></div>
+                    </div>
+                </div>
+                <div class="hud-item">
+                    <p class="hud-prefix">
+                        Score
+                    </p>
+                    <h1 class="hud-main-text" id="score">
+                        0
+                    </h1>
+                </div>
+            </div>
+            <h1 id="question">Question 1 :</h1>
+            <div class="reponse-container">
+                <p class="reponse-prefix">A)</p>
+                <p class="reponse-text" data-number="1">Réponse 1</p>
+            </div>
+            <div class="reponse-container">
+                <p class="reponse-prefix">B)</p>
+                <p class="reponse-text" data-number="2">Réponse 2</p>
+            </div>
+            <div class="reponse-container">
+                <p class="reponse-prefix">C)</p>
+                <p class="reponse-text" data-number="3">Réponse 3</p>
+            </div>
+            <div class="reponse-container">
+                <p class="reponse-prefix">D)</p>
+                <p class="reponse-text" data-number="4">Réponse 4</p>
+            </div>
+        </div>
+    </div>
+    <script src="../Quiz/jeu.js"></script>
+</body>
+</html>

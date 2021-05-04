@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center">
     <p class="float-end mb-1">
       <br>
-      &copy; Quiz'ine, est une création de Raphaël TISBA & Théodore CAVAILLE COLL
+      &copy; Quiz'Up, est une création de Raphaël TISBA & Théodore CAVAILLE COLL
     </p>
   </div>
 </footer>

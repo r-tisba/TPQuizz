@@ -3,8 +3,8 @@ require_once "../visiteur/entete.php";
 require_once "../Modele/Modele.php";
 require_once "../Modele/Utilisateur.php";
 require_once "../Modele/Application.php";
-$application = new Application();
 $utilisateur = new Utilisateur();
+$application = new Application();
 
 ?>
 

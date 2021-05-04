@@ -64,7 +64,7 @@ if (!empty($_GET["error"]))
                             <h5 class="card-title d-flex justify-content-center pt-2"><?=$quiz["nomQuiz"];?> </h5>
                         </div>
                         <div class="view overlay">
-                            <a href="quiz.php?id=<?=$quiz["idQuiz"];?>">
+                            <a href="../Quiz/quiz.php?id=<?=$quiz["idQuiz"];?>">
                                 <img src="<?=$quiz["illustration"];?>" class="imageQuiz" style="max-width: 100%;">
                             </a>
                         </div>
