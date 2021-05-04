@@ -223,6 +223,26 @@ class Utilisateur extends Modele
         $this->idUtilisateur1 = $idUtilisateur1;
         $this->idUtilisateur2 = $idUtilisateur2;
     }
+    public function questionSecrete($idUtilisateur)
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM reponses_questionssecretes LEFT JOIN questionssecretes USING (idQuestion) WHERE idUtilisateur=?");
+        $requete->execute([$idUtilisateur]);
+        $this->idUtilisateur = $idUtilisateur;
+        $question=$requete->fetch(PDO::FETCH_ASSOC);
+        return $question;
+
+        
+    }
+    // public function reponseSecrete($idUtilisateur, $reponse)
+    // {
+    //     $requete = $this->getBDD()->prepare("SELECT * FROM reponses_questionssecretes  WHERE idUtilisateur=?");
+    //     $requete->execute([$idUtilisateur]);
+    //     $this->idUtilisateur = $idUtilisateur;
+    //     $question=$requete->fetch(PDO::FETCH_ASSOC);
+    //     return $question;
+
+        
+    // }
    
     public function filtreAmis($idUtilisateur)
     {

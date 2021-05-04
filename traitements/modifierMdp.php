@@ -13,14 +13,14 @@ if (strlen($_POST["mdp"]) >= 6)
         $mdp = password_hash($mdp, PASSWORD_BCRYPT);
         if ($utilisateur->modifierMdp($mdp, $idUtilisateur) == true) 
         {
-            header("location:../admin/modfierMdp.php?success=modification");
+            header("location:../admin/modifierMdp.php?success=modification");
                 
         } else {
-                header("location:../admin/modfierMdp.php?error=modification");
+                header("location:../admin/modifierMdp.php?error=modification");
                 }
     } else {
-                header("location:../admin/modfierMdp.php?error=mdpnotsame");
+                header("location:../admin/modifierMdp.php?error=mdpnotsame");
             }
 }else {
-    header("location:../admin/modfierMdp.php?error=mdplength");
+    header("location:../admin/modifierMdp.php?error=mdplength");
 }

@@ -34,7 +34,7 @@ $utilisateur= new Utilisateur($_SESSION["idUtilisateur"]);
     <div class="form-group" >
         <h3><b>Mot De Passe :</b> </h3>
         <div class="float-right mb-4">
-        <a href="modifierMdp.php" type="submit" class="btn btn-outline-primary">Modifier mot de passe</a>
+        <a href="questionSecrete.php" type="submit" class="btn btn-outline-primary">Modifier mot de passe</a>
         </div>
     </div>
     <hr>
