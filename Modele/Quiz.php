@@ -57,7 +57,7 @@ class Quiz extends Modele
     // A FINIR
     public function supprimerQuiz($idQuiz)
     {
-        $requete = $this->getBDD()->prepare("DELETE FROM reponses INNER JOIN questions USING(idQuestion) WHERE idQuiz = ?");
+        $requete = $this->getBDD()->prepare("DELETE FROM reponses INNER JOIN questions USING(idQuestion) WHERE idQuiz = ? ");
         $requete->execute([$idQuiz]);
         
         $requete = $this->getBDD()->prepare("DELETE FROM questions WHERE idQuiz = ?");
@@ -68,6 +68,45 @@ class Quiz extends Modele
 
         $this->idQuiz=$idQuiz;
         return true;
+    }
+    public function dernierQuiz()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM quiz WHERE verification=1 ORDER BY idQuiz DESC LIMIT 1");
+        $requete->execute();
+        $dernierQuiz = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $dernierQuiz;
+        
+
+    }
+    public function quizPopulaire()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM quiz_termines LEFT JOIN quiz USING(idQuiz) GROUP BY idQuiz ORDER BY COUNT(quiz_termines.idUtilisateur) DESC LIMIT 1 ");
+        $requete->execute();
+        $quizPop = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $quizPop;
+        
+
+    }
+    public function verifierQuiz()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM quiz WHERE verification=0");
+        $requete->execute();
+        $quizAVerifier = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $quizAVerifier;
+        
+
+    }
+    public function validerQuiz($idQuiz)
+    {
+        $requete = $this->getBDD()->prepare("UPDATE quiz SET verification=1 WHERE idQuiz=?");
+        $requete->execute([$idQuiz]);
+        $this->idQuiz=$idQuiz;
+        return true;
+                
+
     }
 
     public function getIdQuiz()

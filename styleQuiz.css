@@ -133,6 +133,15 @@ div.show-image input
 {
   justify-content: center;
   align-items: center;
+  width: 500px;
+}
+.Lquiz{
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+}
+.nouveauQuiz{
+  width: 400px;
 }
 
 /* ----------------------------------------- Quiz ----------------------------------------- */
