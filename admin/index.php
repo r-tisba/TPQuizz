@@ -158,17 +158,12 @@ if($_SESSION["idRole"] == 1)
                       $resultats = $utilisateur->classement();
                       foreach($resultats as $resultat)
                       {               
-                          ?>
-                                    
+                          ?>   
                           <div class="col-5 col-sm-5 col-md-7 col-lg-8 mb-2">
                               <li class="list-group-item">Pseudo : <?=$resultat["pseudo"]?></li>
                               <li class="list-group-item">Points : <?=$resultat["pointsUtilisateur"]?></li>
-                              
                           </div>
-                                
-
-                          <?php
-                          
+                          <?php     
                           }
                       ?>  
                   </div>

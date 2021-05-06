@@ -14,10 +14,10 @@ body
 
 .hrPerso
 {
-  width: 20rem;
-  border: 3px solid #4b84da;
+  width: 35rem;
+  border: 2px solid #1e1e1f;
   border-radius: 10px;
-  color: #4b84da;
+  color: #1e1e1f;
   opacity: 1 !important;
   margin-bottom: 5%;
 }

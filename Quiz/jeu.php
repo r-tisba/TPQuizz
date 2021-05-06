@@ -1,6 +1,5 @@
 <?php
 require_once "../Quiz/entete.php";
-?> <link rel="stylesheet" href="../Quiz/styleJeu.css"> <?php
 
 $utilisateur = new Utilisateur($_SESSION["pseudo"]);
 $application = new Application();
@@ -22,13 +21,13 @@ $random = rand(0, count($listeQuestions) - 1);
 if(count($listeQuestions) == 0)
 {
     ?>
-    <div class="alert alert-danger mt-2">Test couleur</div>
 
     <div class="container">
         <div class="bilan">
             <div class="questions-container">
             <?php 
             $reponsesUtilisateur = $objetReponse->recupererReponsesUtilisateur($idUtilisateur, $idQuiz);
+            $points = 0;
 
             foreach($reponsesUtilisateur as $reponseUtilisateur)
             {
@@ -40,6 +39,7 @@ if(count($listeQuestions) == 0)
                     <?php
                     $idQuestion = $reponseUtilisateur["idQuestion"];
                     $objetQuestion = new Question($idQuestion);
+                    
                     $nQ++;
                     
                     ?>
@@ -91,6 +91,7 @@ if(count($listeQuestions) == 0)
         </div>
         <div id="end" class="flex-center flex-column">
             <h1 id="scoreFinal">Score</h1>
+            <?=$points?>
             <a href="../admin/listeCategories.php" class="btn">Retourner à l'accueil</a>
         </div>
     </div>

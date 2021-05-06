@@ -22,7 +22,7 @@ require_once "../Modele/Reponse.php";
 
 <body>
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
-  <a class="navbar-brand" href="index.php">
+  <a class="navbar-brand" href="../admin/index.php">
     <img src="../images/design/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Quiz'Up
   </a>
