@@ -73,4 +73,4 @@ require_once "../Modele/Reponse.php";
         ?>
     </div> 
 </nav>
-<div class="container mt-4 container-pageQuiz">
+<div class="container pageQuiz">

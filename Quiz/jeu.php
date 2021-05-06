@@ -10,7 +10,6 @@ $idQuiz = $_GET["id"];
 $quiz = new Quiz($_GET["id"]);
 
 $questions = $quiz->getQuestions();
-$nQ = 1;
 
 $objetQuestion = new Question();
 
@@ -18,16 +17,17 @@ $listeQuestions = $objetQuestion->recupererQuestionsNonJoues($idQuiz, $idUtilisa
 
 $random = rand(0, count($listeQuestions) - 1);
 
+/* -------------------------------- ECRAN DE FIN DE PARTIE -------------------------------- */
 if(count($listeQuestions) == 0)
 {
     ?>
-
     <div class="container">
         <div class="bilan">
             <div class="questions-container">
             <?php 
             $reponsesUtilisateur = $objetReponse->recupererReponsesUtilisateur($idUtilisateur, $idQuiz);
             $points = 0;
+            $nQ = 1;
 
             foreach($reponsesUtilisateur as $reponseUtilisateur)
             {
@@ -99,22 +99,18 @@ if(count($listeQuestions) == 0)
     exit;
 }
 
+/* ----------------------------------- JEU QUIZ ----------------------------------- */
+$nQ = 10 - count($listeQuestions);
 $idQuestionEnCours = $listeQuestions[$random]["idQuestion"];
 if($objetQuestion->verifQuestionTermine($idUtilisateur, $idQuestionEnCours) == true)
 {
     ?>
-    <div class="container appQuiz">
-        <form method="post" action="../traitements/enregistrerReponse.php">
-            <div class="form-group">
-                <label for="question">
-
-                <?php /*
-                echo "<pre>";
-                print_r($listeQuestions);
-                echo "</pre>";
-                */ ?>
-                    Question <?=$nQ;?> : <?=$listeQuestions[$random]["question"];?>
-                </label>
+    
+                <div class="hud">
+                    <div class="hud-element">
+                        <p id="progressText" class="hud-prefix">Question <?=$nQ;?> sur 10 :</p>
+                    </div>               
+                </div>
                 <?php
 
                 $idQuestion = $listeQuestions[$random]["idQuestion"];
@@ -122,7 +118,12 @@ if($objetQuestion->verifQuestionTermine($idUtilisateur, $idQuestionEnCours) == t
                 $reponses = $objetQuestion->getReponses();
 
                 $nR = 1;
-                
+                ?>
+                <h2 class="question"><?=$listeQuestions[$random]["question"];?> </h2>
+                <form method="post" action="../traitements/enregistrerReponse.php">
+                <div class="form-group">
+                <?php
+                $nQ++;
                 foreach($reponses as $reponse)
                 {
                     $idReponse = $reponse->getIdReponse();
@@ -131,7 +132,7 @@ if($objetQuestion->verifQuestionTermine($idUtilisateur, $idQuestionEnCours) == t
                     <div class="reponse-container">
                         <div class="reponse-prefix">Réponse <?=$nR;?> :</div>
                         <div class="reponse-text">
-                            <button type="submit" name="idReponse" id="idReponse" value="<?=$application->gererGuillemets($objetReponse->getIdReponse());?>">
+                            <button type="submit" class="btn-reponse" name="idReponse" id="idReponse" value="<?=$application->gererGuillemets($objetReponse->getIdReponse());?>">
                                 <?=$application->gererGuillemets($objetReponse->getReponse());?>
                             </button>
                         </div>
@@ -144,7 +145,6 @@ if($objetQuestion->verifQuestionTermine($idUtilisateur, $idQuestionEnCours) == t
         </form>
     </div>
     <?php
-    $nQ++;
 } else {
     header("location:../Quiz/jeu.php?id=$idQuiz");
 }

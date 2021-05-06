@@ -43,55 +43,55 @@ body
 }
 .card
 {
-    background-color: white;
+  background-color: white;
 }
 
 .imageCategorie 
 {
-    max-width: 100%;
-    width: 20rem;
-    height: 20rem;
+  max-width: 100%;
+  width: 20rem;
+  height: 20rem;
 }
 
 .imageQuiz
 {
-    max-width: 100%;
-    height: 20rem;
+  max-width: 100%;
+  height: 20rem;
 }
 
 .zoom 
 {
-    padding: 10px;
-    transition: transform .2s; /* Animation */
-    margin: 0 auto;
+  padding: 10px;
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
 }
   
 .zoom:hover 
 {
-    transform: scale(1.07); /* (1.5 = 150% zoom) */
+  transform: scale(1.07); /* (1.5 = 150% zoom) */
 }
 
 .cardFooterCategorie
 {
-    background-color: white;
+  background-color: white;
 }
 
 /* --------------------------------------- Flèche retour --------------------------------------- */
 .fleche
 {
-    padding-bottom: 3px;
-    height: 32px;
-    width: 30px;
+  padding-bottom: 3px;
+  height: 32px;
+  width: 30px;
 }
 .retour 
 {
-    text-decoration: none;    
-    color: #373A3C;
-    font-size: 1.4rem;
+  text-decoration: none;    
+  color: #373A3C;
+  font-size: 1.4rem;
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .avatarProfil
@@ -136,58 +136,12 @@ div.show-image input
   width: 500px;
 }
 .Lquiz{
+
   justify-content: center;
   align-items: center;
   width: 370px;
 }
-.nouveauQuiz{
+.nouveauQuiz
+{
   width: 400px;
-}
-
-/* ----------------------------------------- Quiz ----------------------------------------- */
-
-*, *::before, *::after  /* Selectionne tous les élements */
-
-{
-  box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
-}
-
-:root
-{
-  --hue-neutral: 200;
-  --hue-correct: 145;
-  --hue-wrong: 0;
-}
-
-/*
-.container-pageQuiz
-{
-  --hue: var(--hue-neutral);
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: hsl(var(--hue), 100, 20%);
-}
-
-body.correct
-{
-  --hue: var(--hue-correct);
-}
-*/
-
-#bonneReponse
-{
-  --hue: var(--hue-correct);
-  background-color: hsl(--hue, 100, 20%);
-}
-
-#mauvaiseReponse
-{
-  --hue: var(--hue-wrong);
-  background-color: hsl(--hue, 100, 20%);
 }
