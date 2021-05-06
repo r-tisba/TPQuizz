@@ -50,6 +50,22 @@ class Reponse extends Modele
         return true;
     }
 
+    public function recupererReponsesUtilisateur($idUtilisateur, $idQuiz)
+    {
+        $requete=$this->getBDD()->prepare("SELECT * FROM reponses_utilisateurs LEFT JOIN questions USING(idQuestion) LEFT JOIN reponses USING(idReponse) WHERE idUtilisateur = ? AND idQuiz = ?");
+        $requete->execute([$idUtilisateur, $idQuiz]);
+        $infos = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $infos;
+    }
+
+    public function recupererReponsesViaQuestion($idQuestion)
+    {
+        $requete=$this->getBDD()->prepare("SELECT idQuestion, idReponse, reponse, validite FROM reponses LEFT JOIN questions USING(idQuestion) WHERE idQuestion = ?");
+        $requete->execute([$idQuestion]);
+        $infos = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $infos;
+    }
+
     public function getIdReponse()
     {
         return $this->idReponse;

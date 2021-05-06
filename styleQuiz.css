@@ -129,15 +129,16 @@ div.show-image input
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.meilleurJoueur{
+.meilleurJoueur
+{
   justify-content: center;
   align-items: center;
 }
 
 /* ----------------------------------------- Quiz ----------------------------------------- */
-/*
+
 *, *::before, *::after  /* Selectionne tous les élements */
-/*
+
 {
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
@@ -150,6 +151,7 @@ div.show-image input
   --hue-wrong: 0;
 }
 
+/*
 .container-pageQuiz
 {
   --hue: var(--hue-neutral);
@@ -168,3 +170,15 @@ body.correct
   --hue: var(--hue-correct);
 }
 */
+
+#bonneReponse
+{
+  --hue: var(--hue-correct);
+  background-color: hsl(--hue, 100, 20%);
+}
+
+#mauvaiseReponse
+{
+  --hue: var(--hue-wrong);
+  background-color: hsl(--hue, 100, 20%);
+}
