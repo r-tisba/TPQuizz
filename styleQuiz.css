@@ -132,6 +132,15 @@ div.show-image input
 .meilleurJoueur{
   justify-content: center;
   align-items: center;
+  width: 500px;
+}
+.Lquiz{
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+}
+.nouveauQuiz{
+  width: 400px;
 }
 
 /* ----------------------------------------- Quiz ----------------------------------------- */

@@ -69,6 +69,26 @@ class Quiz extends Modele
         $this->idQuiz=$idQuiz;
         return true;
     }
+    public function dernierQuiz()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM quiz WHERE verification=1 ORDER BY idQuiz DESC LIMIT 1");
+        $requete->execute();
+        $dernierQuiz = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $dernierQuiz;
+        
+
+    }
+    public function quizPopulaire()
+    {
+        $requete = $this->getBDD()->prepare("SELECT * FROM quiz_termines LEFT JOIN quiz USING(idQuiz) GROUP BY idQuiz ORDER BY COUNT(quiz_termines.idUtilisateur) DESC LIMIT 1 ");
+        $requete->execute();
+        $quizPop = $requete->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $quizPop;
+        
+
+    }
 
     public function getIdQuiz()
     {
